@@ -76,7 +76,7 @@ app.listen(process.env.PORT, function () {
   console.log('Listening on port 3000...')
 })
 
-
+/*
 
 const http = require('http').createServer();
 
@@ -94,3 +94,5 @@ io.on('connection', (socket) => {
 });
 
 http.listen(process.env.PORT, () => console.log('listening on http://localhost:8080') );
+
+*/
