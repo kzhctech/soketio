@@ -68,6 +68,12 @@ app.get('/', function (req, res) {
 </html>
 ')
 })
+
+
+app.listen(process.env.PORT, function () {
+  console.log('Listening on port 3000...')
+})
+
 const http = require('http').createServer();
 
 const io = require('socket.io')(http, {
