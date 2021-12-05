@@ -16,7 +16,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http,{
     cors: { origin: "*" }
 });
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   console.error('express connection');
   res.sendFile(path.join(__dirname, 'index.html'));
 });
