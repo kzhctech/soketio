@@ -10,6 +10,11 @@ var io = require('socket.io')(http,{
 });
 
 
+app.get('/*', (req, res) => {
+  console.error('express connection');
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-the-ashes-2021-22').then((response) => {
   // Load the web page source code into a cheerio instance
   const $ = cheerio.load(response.data);
@@ -31,27 +36,18 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-t
   const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
   const crr = $('#top .ui-match-scores-branding .crr').text();
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
-});
-
-app.get('/*', (req, res) => {
-  console.error('express connection');
-  res.send(status);
-  //res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-
 
 io.on('connection', (socket) => {
     console.log('a user connected');
 
     socket.on('message', (message) =>     {
       console.log(message);
-        //status = 'hey';
         io.emit('message', `Status ${status}` );   
     });
 });
 
 
+});
 
 http.listen(process.env.PORT, () => console.error('listening on http://localhost:3002/'));
 console.error('socket.io example');
