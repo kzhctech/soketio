@@ -31,8 +31,8 @@ io.on('connection', (socket) => {
     socket.on('message', (message) =>     {
         console.log(message);
         
-/*
-axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-the-ashes-2021-22').then((response) => {
+
+axios.get(`https://${message}`).then((response) => {
   // Load the web page source code into a cheerio instance
   const $ = cheerio.load(response.data);
   const urlElems = $('.list-content span:nth-child(5)').text();
@@ -53,8 +53,8 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-t
   const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
   const crr = $('#top .ui-match-scores-branding .crr').text();
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
- */
-        io.emit('message', `${socket.id.substr(0,2)} said ${message}` );   
+ 
+        io.emit('message', `Status ${status}` );   
     });
 });
 
