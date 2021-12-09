@@ -42,13 +42,14 @@ io.on('connection', (socket) => {
 
     setInterval(function(){ 
            io.emit('message', {status,batTeam,commentry});   
-    }, 33000);
+    }, 30000);
     
-    
+    /*
     socket.on('message', (message) =>     {
       console.log(message);
            io.emit('message');   
     });
+    */
 });
 
 
