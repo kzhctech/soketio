@@ -8,10 +8,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http,{
     cors: { origin: "*" }
 });
-app.get('/*', (req, res) => {
-  console.error('express connection');
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 
 axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-the-ashes-2021-22').then((response) => {
@@ -37,6 +33,14 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-t
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
 });
 
+app.get('/*', (req, res) => {
+  console.error('express connection');
+  res.send(status);
+  //res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+
+/*
 io.on('connection', (socket) => {
     console.log('a user connected');
 
@@ -47,7 +51,7 @@ io.on('connection', (socket) => {
     });
 });
 
-
+*/
 
 http.listen(process.env.PORT, () => console.error('listening on http://localhost:3002/'));
 console.error('socket.io example');
