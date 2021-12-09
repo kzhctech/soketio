@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
 
     socket.on('message', (message) =>     {
       console.log(message);
-        io.emit('message', `Status ${status}` );   
+        io.emit('message', {status,batTeam,commentry});   
     });
 });
 
