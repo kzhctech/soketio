@@ -1,19 +1,7 @@
-/*
-var express = require('express')
-var app = express()
 
-app.get('/', function (req, res) {
-  res.send('hello')
-})
-
-app.listen(process.env.PORT, function () {
-  console.log('Listening on port 3000...')
-})
-*/
-/*
 const cheerio = require('cheerio');
 const axios = require('axios');
-*/
+
 var path = require('path');
 var app = require('express')();
 var http = require('http').Server(app);
