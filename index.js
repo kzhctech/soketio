@@ -40,9 +40,14 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-t
 io.on('connection', (socket) => {
     console.log('a user connected');
 
+    setInterval(function(){ 
+           io.emit('message', {status,batTeam,commentry});   
+    }, 33000);
+    
+    
     socket.on('message', (message) =>     {
       console.log(message);
-        io.emit('message', {status,batTeam,commentry});   
+           io.emit('message');   
     });
 });
 
