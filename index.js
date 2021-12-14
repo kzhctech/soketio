@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/', (req, res) => {
+app.get('/cric', (req, res) => {
   console.error('express connection');
   res.sendFile(path.join(__dirname, 'cric.html'));
 });
@@ -27,7 +27,8 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-t
   const urlElems = $('.list-content span:nth-child(5)').text();
  
   const status = $('.cbz-ui-status').text();
-
+  const title = $('#top').find('div').find('div:nth-child(9)').find('h4').text();
+    
   const batsman1name = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').text();
   const batsman2name = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').text();
   const bowlername = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').text();
@@ -48,7 +49,7 @@ io.on('connection', (socket) => {
     console.log('a user connected');
 
     setInterval(function(){ 
-           io.emit('message', {status,batTeam,commentry});   
+           io.emit('message', {title,status,batTeam,commentry});   
     }, 60000);
     
     /*
