@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
     console.log('a user connected');
 
     setInterval(function(){ 
-           io.emit('message', {title,status,batTeam,commentry});   
+           io.emit('message', {title,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover});   
     }, 60000);
     
     /*
