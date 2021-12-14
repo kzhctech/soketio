@@ -10,9 +10,15 @@ var io = require('socket.io')(http,{
 });
 
 
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
   console.error('express connection');
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+
+app.get('/', (req, res) => {
+  console.error('express connection');
+  res.sendFile(path.join(__dirname, 'cric.html'));
 });
 
 axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-the-ashes-2021-22').then((response) => {
