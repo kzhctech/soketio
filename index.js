@@ -19,8 +19,7 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/36332/aus-vs-eng-1st-test-t
   // Load the web page source code into a cheerio instance
   const $ = cheerio.load(response.data);
   const urlElems = $('.list-content span:nth-child(5)').text();
-    
-  const title = $('#top').find('div').find('div:nth-child(9)').find('h4').text();
+ 
   const status = $('.cbz-ui-status').text();
 
   const batsman1name = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').text();
@@ -43,7 +42,7 @@ io.on('connection', (socket) => {
     console.log('a user connected');
 
     setInterval(function(){ 
-           io.emit('message', {title,status,batTeam,commentry});   
+           io.emit('message', {status,batTeam,commentry});   
     }, 60000);
     
     /*
