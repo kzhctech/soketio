@@ -24,11 +24,10 @@ app.get('/cric', (req, res) => {
 axios.get('https://m.cricbuzz.com/cricket-commentary/37026/mls-vs-sys-13th-match-big-bash-league-2021-22').then((response) => {
   // Load the web page source code into a cheerio instance
   const $ = cheerio.load(response.data);
-  const urlElems = $('.list-content span:nth-child(5)').text();
  
   const status = $('.cbz-ui-status').text();
+
   const title = $('#top').find('div').find('div:nth-child(9)').find('h4').text();
-    
   const batsman1name = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').text();
   const batsman2name = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').text();
   const bowlername = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').text();
@@ -44,7 +43,9 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/37026/mls-vs-sys-13th-match
   const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
   const crr = $('#top .ui-match-scores-branding .crr').text();
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
-
+ 
+    
+    
 io.on('connection', (socket) => {
     console.log('a user connected');
 
