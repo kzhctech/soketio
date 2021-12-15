@@ -21,7 +21,7 @@ app.get('/cric', (req, res) => {
   res.sendFile(path.join(__dirname, 'cric.html'));
 });
 
-axios.get('https://m.cricbuzz.com/cricket-commentary/37022/hbh-vs-prs-12th-match-big-bash-league-2021-22').then((response) => {
+axios.get('https://m.cricbuzz.com/cricket-commentary/37026/mls-vs-sys-13th-match-big-bash-league-2021-22').then((response) => {
   // Load the web page source code into a cheerio instance
   const $ = cheerio.load(response.data);
   const urlElems = $('.list-content span:nth-child(5)').text();
