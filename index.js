@@ -23,7 +23,7 @@ app.get('/cric', function (req, res) {
 
 
 
-axios.get('https://m.cricbuzz.com/cricket-commentary/37026/mls-vs-sys-13th-match-big-bash-league-2021-22').then((response) => {
+axios.get('https://m.cricbuzz.com/cricket-commentary/41521/saur-vs-vid-quarter-final-3-vijay-hazare-trophy-2021-22').then((response) => {
 
   const $ = cheerio.load(response.data);
 
