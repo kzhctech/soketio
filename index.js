@@ -71,15 +71,15 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-ba
 
     
 io.on('connection', (socket) => {
-    console.log('a user connected');
-    
-    
+  
+  console.log('a user connected');
+   
+setInterval(function () {
 
-
-    setInterval(function(){ 
-        
-        axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-bangladesh-tour-of-new-zealand-2022').then((response) => {
+  axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-bangladesh-tour-of-new-zealand-2022').then((response) => {
+      
   // Load the web page source code into a cheerio instance
+      
   const $ = cheerio.load(response.data);
  
   const status = $('.cbz-ui-status').text();
@@ -101,19 +101,12 @@ io.on('connection', (socket) => {
   const crr = $('#top .ui-match-scores-branding .crr').text();
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
  
-           io.emit('message', {title,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover});   
-    }, 3000);
- 
-});
-    
-        
-    
-    /*
-    socket.on('message', (message) =>     {
-      console.log(message);
-           io.emit('message');   
-    });
-    */
+  io.emit('message', {title,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover}); 
+      
+  });
+
+},30000);
+   
 });
 
 http.listen(process.env.PORT, () => console.error('listening on http://localhost:3002/'));
