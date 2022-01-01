@@ -76,7 +76,8 @@ io.on('connection', (socket) => {
   console.log('a user connected');
    
 setInterval(function () {
-
+  let cmnty = '';
+    
   axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-bangladesh-tour-of-new-zealand-2022').then((response) => {
       
   // Load the web page source code into a cheerio instance
@@ -102,11 +103,17 @@ setInterval(function () {
   const crr = $('#top .ui-match-scores-branding .crr').text();
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
   const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
-  io.emit('message', {title,lbb,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover}); 
+  
+      if(batTeam != cmnty){
+   io.emit('message', {title,lbb,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover}); 
+      
+      }
+  
+
       
   });
 
-},90000);
+},20000);
    
 });
 
