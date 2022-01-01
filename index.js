@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
  
            io.emit('message', {title,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover});   
-    }, 30000);
+    }, 300000);
  
 });
     
