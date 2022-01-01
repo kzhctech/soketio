@@ -44,6 +44,7 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-ba
   const batTeam = $('#top h3.ui-li-heading span.miniscore-teams.ui-bat-team-scores').text();
   const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
   const crr = $('#top .ui-match-scores-branding .crr').text();
+  const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
  
   console.log('Title:',title);
@@ -100,8 +101,8 @@ setInterval(function () {
   const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
   const crr = $('#top .ui-match-scores-branding .crr').text();
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
- 
-  io.emit('message', {title,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover}); 
+  const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+  io.emit('message', {title,lbb,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover}); 
       
   });
 
