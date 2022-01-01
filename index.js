@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
 setInterval(function () {
   let cmnty = '';
     
-  axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-bangladesh-tour-of-new-zealand-2022').then((response) => {
+  axios.get('https://m.cricbuzz.com/cricket-commentary/37082/hbh-vs-brh-29th-match-big-bash-league-2021-22').then((response) => {
       
   // Load the web page source code into a cheerio instance
       
