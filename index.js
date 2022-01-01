@@ -104,7 +104,7 @@ setInterval(function () {
   const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
   const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
   
-      if(batTeam != cmnty){
+      if(commentry != cmnty){
    io.emit('message', {title,lbb,status,batTeam,commentry,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerwikwt,bowlerover}); 
       
       }
