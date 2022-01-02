@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
   console.log('a user connected');
    
 setInterval(function () {
-  let cmnty = '';
+  var cmnty = '';
     
   axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-bangladesh-tour-of-new-zealand-2022').then((response) => {
       
