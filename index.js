@@ -1,6 +1,7 @@
 
 const cheerio = require('cheerio');
 const axios = require('axios');
+var cmnty = '';
 
 var path = require('path');
 var app = require('express')();
@@ -81,7 +82,7 @@ setInterval(function () {
   axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-bangladesh-tour-of-new-zealand-2022').then((response) => {
       
   // Load the web page source code into a cheerio instance
-  var cmnty = '';
+
       
   const $ = cheerio.load(response.data);
  
