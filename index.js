@@ -104,7 +104,8 @@ setInterval(function () {
   const batTeam = $('#top h3.ui-li-heading span.miniscore-teams.ui-bat-team-scores').text();
   const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
   const crr = $('#top .ui-match-scores-branding .crr').text();
-  const commentry = $('#paginationList').first().first().first().first().children().first().first().children().children().children().children().children().first().text();
+  const commentry = $('#paginationList').find('div').find('div:nth-child(3)').text();
+  const commentry2 = $('#paginationList').find('div').find('div:nth-child(5)').text();
   const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
   
       if(commentry != cmnty){
