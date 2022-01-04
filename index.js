@@ -73,9 +73,10 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/40536/nz-vs-ban-1st-test-ba
 
     
 io.on('connection', (socket) => {
-    
+
+ cmnty = '';
   
-  console.log('a user connected');
+console.log('a user connected');
    
 setInterval(function () {
     
