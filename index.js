@@ -80,7 +80,7 @@ console.log('a user connected');
    
 setInterval(function () {
     
-  axios.get('https://m.cricbuzz.com/live-cricket-scores/37101/prs-vs-sys-34th-match-big-bash-league-2021-22').then((response) => {
+  axios.get('https://m.cricbuzz.com/cricket-commentary/36341/aus-vs-eng-4th-test-the-ashes-2021-22').then((response) => {
       
   // Load the web page source code into a cheerio instance
 
