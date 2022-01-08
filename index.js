@@ -17,15 +17,22 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/db', (req, res) => {
-var url = 'mongodb+srv://kzhccric:2FQHi2IPGWdllW21@cluster0.v6byg.mongodb.net/kzhcCric?retryWrites=true&w=majority';
-MongoClient.connect(url)
-  .then(function (db) { // <- db as first argument
-    res.send(db);
-  })
-  .catch(function (err) {})
-  
-});
+mongodb.connect('mongodb+srv://kzhccric:2FQHi2IPGWdllW21@cluster0.v6byg.mongodb.net/kzhcCric?retryWrites=true&w=majority', { useUnifiedTopology: true }, function (err, client) {
+//news = await db.collection("news").find({ author: "tajbir" }).toArray();
+
+app.get('/db', async (req, res) => {
+  try {
+    const news = await db.collection("news").find({ author: "tajbir" }).toArray()
+    if (news.length) {
+      res.json(news)
+    } else {
+      res.json("You do not currently have any dogs in your pets collection.")
+    }
+  } catch (err) {
+    console.log(err)
+    res.json("Try again later.")
+  }
+);
 
 
 
