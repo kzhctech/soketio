@@ -32,7 +32,7 @@ app.get('/db', async (req, res) => {
     console.log(err)
     res.json("Try again later.")
   }
-);
+});
 
 
 
