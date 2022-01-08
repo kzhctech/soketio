@@ -1,4 +1,4 @@
-
+var MongoClient = require('mongodb').MongoClient;
 const cheerio = require('cheerio');
 const axios = require('axios');
 var cmnty = '';
@@ -14,6 +14,17 @@ var io = require('socket.io')(http,{
 app.get('/', (req, res) => {
   console.error('express connection');
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+
+app.get('/db', (req, res) => {
+var url = 'mongodb+srv://kzhccric:2FQHi2IPGWdllW21@cluster0.v6byg.mongodb.net/kzhcCric?retryWrites=true&w=majority';
+MongoClient.connect(url)
+  .then(function (db) { // <- db as first argument
+    res.send(db);
+  })
+  .catch(function (err) {})
+  
 });
 
 
