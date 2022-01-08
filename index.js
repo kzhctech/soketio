@@ -19,12 +19,9 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/db',async (req, res) => {
-    mongodb.connect('mongodb+srv://kzhccric:2FQHi2IPGWdllW21@cluster0.v6byg.mongodb.net/kzhcCric?retryWrites=true&w=majority', { useUnifiedTopology: true }, function (err, client) {
-    const db = client.db();
-    news = await db.collection("news").find({ author: "tajbir" }).toArray();
+app.get('/db', (req, res) => {
+    news = 'hi';
     res.send(news);
-    });
 });
 
 
