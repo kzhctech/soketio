@@ -24,6 +24,7 @@ app.get('/db',async (req, res) => {
     const db = client.db();
     news = await db.collection("news").find({ author: "tajbir" }).toArray();
     res.send(news);
+    });
 });
 
 
