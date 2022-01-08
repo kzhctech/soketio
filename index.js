@@ -1,4 +1,4 @@
-var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('mongodb');
 const cheerio = require('cheerio');
 const axios = require('axios');
 var cmnty = '';
@@ -16,7 +16,21 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-
+mongodb.connect('mongodb+srv://kzhccric:2FQHi2IPGWdllW21@cluster0.v6byg.mongodb.net/kzhcCric?retryWrites=true&w=majority', { useUnifiedTopology: true }, function (err, client) {
+app.get("/dbc", async (req, res) => {
+  try {
+    const news = await client.db().collection("news").find({ author: "tajbir" }).toArray()
+    if (news.length) {
+      res.json(news)
+    } else {
+      res.json("You do not currently have any dogs in your pets collection.")
+    }
+  } catch (err) {
+    console.log(err)
+    res.json("Try again later.")
+  }
+})
+});
 
 
 app.get('/db', (req, res) => {
