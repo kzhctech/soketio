@@ -32,7 +32,7 @@ const db = client.db()
 
 app.get("/dbc", async (req, res) => {
   try {
-    const news = await db.collection("news").find({ author: "tajbir" }).toArray()
+    const news = await db.collection("news").find().toArray()
     if (news.length) {
       res.json(news)
     } else {
