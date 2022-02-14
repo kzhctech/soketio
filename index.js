@@ -111,8 +111,8 @@ io.on('connection', (socket) => {
 console.log('a user connected');
    
 setInterval(function () {
-    
-  axios.get('https://m.cricbuzz.com/live-cricket-scores/40538/nz-vs-ban-2nd-test-bangladesh-tour-of-new-zealand-2022').then((response) => {
+  let linked = 'https://m.cricbuzz.com/cricket-commentary/42931/cgc-vs-klt-eliminator-bangladesh-premier-league-2022';
+  axios.get(linked).then((response) => {
       
   // Load the web page source code into a cheerio instance
 
