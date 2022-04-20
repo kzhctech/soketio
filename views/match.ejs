@@ -38,7 +38,7 @@
             <th scope="col">Status</th>
             <th scope="col">Batting</th>
 	    <th scope="col">Bowling</th>
-            <th scope="col">Delete</th>
+            <th scope="col">Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -53,14 +53,14 @@
 			<div><%= match.bat2name %> <%= match.bat2run %> (<%= match.bat2ball %>)</div>
 		</td>
 		<td><%= match.ballname %> <span class="text-right"><%= match.ballover %>-<%= match.ballwk %></span></td>
-		<td><form method="post" action="/delm"><input type="hidden" name="id" value="<%= match._id %>"><button type="submit" class="btn btn-danger">Delete</button></form></td>
+		<td>
+                   <form method="post" action="/editm"><input type="hidden" name="id" value="<%= match._id %>"><button type="submit" class="btn btn-danger">Edit</button></form>
+                   <form method="post" action="/delm"><input type="hidden" name="id" value="<%= match._id %>"><button type="submit" class="btn btn-danger">Delete</button></form>
+                </td>
             </tr>
         <%})%>
         </tbody>
       </table>
-
-
- 
 
 
 <form class="" method="post" action="/addm">
@@ -68,11 +68,11 @@
  <div class="form-row">
     <div class="form-group col-md-12">
           <label for="email">Name:</label><br>
-          <input name="name" type="name" class="form-control">
+          <input name="name" type="text" class="form-control">
     </div>
     <div class="form-group col-md-12">
           <label for="email">Status:</label><br>
-          <input name="name" type="status" class="form-control">
+          <input name="status" type="text" class="form-control">
     </div>
     <div class="form-group col-md-4">
     <label for="email">Team 1 Name:</label>

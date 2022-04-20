@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<form class="" method="post" action="/edit">
+<input name="id" value="<%= match._id %>" type="hidden" class="form-control">
+ <div class="form-row">
+    <div class="form-group col-md-12">
+          <label for="email">Name:</label><br>
+          <input name="name" value="<%= match.name %>" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-12">
+          <label for="email">Status:</label><br>
+          <input name="status" value="<%= match.status %>" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 1 Name:</label>
+    <input name="team1name" value=" <%= match.team1name %> " type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 1 Flug:<img height="12px" src="<%= match.team1flug %>"></label>
+    <input name="team1flug" value=" <%= match.team1flug %> " type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Team 1 Run:</label>
+    <input type="text" value=" <%= match.team1run %> " name="team1run" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 2 Name:</label>
+    <input name="team2name" value=" <%= match.team2name %> " type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 2 Flug:<img height="12px" src="<%= match.team2flug %>"> </label>
+    <input name="team2flug" value="<%= match.team2flug %>" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Team 2 Run:</label>
+    <input type="text" value="<%= match.team2run %>" name="team2run" class="form-control">
+    </div>
+
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat1 Name:</label>
+    <input type="text" value="<%= match.bat1name %>" name="bat1name" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat1 run:</label>
+    <input type="text" value="<%= match.bat1run %>" name="bat1run" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat1 Ball:</label>
+    <input type="text" value="<%= match.bat1ball %>" name="bat1ball" class="form-control">
+    </div>
+
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat2 Name:</label>
+    <input type="text" value="<%= match.bat2name %>" name="bat2name" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat2 run:</label>
+    <input type="text" value="<%= match.bat2run %>" name="bat2run" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat2 Ball:</label>
+    <input value="<%= match.bat2ball %>" type="text" name="bat2ball" class="form-control">
+    </div>
+
+    <div class="form-group col-md-4">
+    <label for="pwd">Ball Name:</label>
+    <input value="<%= match.ballname %>" type="text" name="ballname" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Ballover:</label>
+    <input value="<%= match.ballover %>" type="text" name="ballover" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Ballwk:</label>
+    <input value="<%= match.ballwk %>" type="text" name="ballwk" class="form-control">
+    </div>
+    <div class="form-group col-md-12">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+</body>
+</html>

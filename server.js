@@ -12,6 +12,10 @@ const { kStringMaxLength } = require('buffer');
         extended: true
     }));
 
+
+
+app.use('/static', express.static('public'))
+
 app.set('view engine', 'ejs');
 
 
@@ -50,6 +54,24 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 
     // define Schema
+    var NewsSchema = mongoose.Schema({
+      title: String,
+      author: String,
+      date: String,
+      content: String,
+      thumb:String
+    });
+ 
+    // compile schema to model
+    var News = mongoose.model('News', NewsSchema, 'Newstore');
+ 
+
+
+
+
+
+
+    // define Schema
     var BookSchema = mongoose.Schema({
       name: String,
       price: Number,
@@ -64,13 +86,75 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 
 app.get('/', (req, res) => {
-    Book.find({}, function(err, book) {
-        //console.log(movie)
-        res.render('index', {
-            bookList: book
+    Match.find({}, function(err, match) {
+        res.render('newindex', {
+           matchList: match
         })
     })
 })
+
+app.post('/edit', (req, res) => {
+
+Match.findByIdAndUpdate(req.body.id,{
+		name: req.body.name , 
+		team1name: req.body.team1name,
+		team1flug: req.body.team1flug,
+		team1run: req.body.team1run,
+		team2name: req.body.team2name,
+		team2flug: req.body.team2flug,
+		team2run: req.body.team2run,
+		status: req.body.status,
+		bat1name: req.body.bat1name,
+		bat1run: req.body.bat1run,
+		bat1ball: req.body.bat1ball,
+		bat2name: req.body.bat2name,
+		bat2run: req.body.bat2run,
+		bat2ball: req.body.bat2ball,
+		ballname: req.body.ballname,
+		ballover: req.body.ballover,
+		ballwk: req.body.ballwk	
+
+}, function(err, result){
+
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.redirect('/match')
+        }
+
+    })
+
+
+
+
+})
+
+
+
+app.post('/editm', (req, res) => {
+console.log(req.body.id)  
+Match.find({_id:req.body.id}, function(err, match) {
+
+	console.log(match[0].name)  
+        res.render('edit', {
+           match: match[0]
+        })
+    })
+});
+
+
+app.get('/match/:id', function(req, res) {
+  //res.send("tagId is set to " + req.params.id);
+Match.find({_id:req.params.id}, function(err, match) {
+	console.log(match[0].name)  
+        res.render('onematch', {
+           match: match[0]
+        })
+    })
+
+});
+
 
 app.get('/match', (req, res) => {
 
@@ -168,6 +252,9 @@ app.post('/delm', (req, res) => {
     Match.remove({_id:req.body.id}, function(err){
     if(err) throw err;
 });
+
+
+
 
 
 });
