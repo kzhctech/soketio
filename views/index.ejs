@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quanty</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%bookList.forEach(book => {%>
+            <tr>
+                <th scope="row"><%= book._id %></th>
+                <td><%= book.name %></td>
+                <td><%= book.price %></td>
+                <td><%= book.quantity %></td>
+		<td><form method="post" action="/del"><input type="hidden" name="id" value="<%= book._id %>"><button type="submit" class="btn btn-danger">Delete</button></form></td>
+            </tr>
+        <%})%>
+        </tbody>
+      </table>
+<form class="form-inline" method="post" action="/add">
+  <div class="form-group">
+    <label for="email">Name:</label>
+    <input name="name" type="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="email">Price:</label>
+    <input name="price" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Quanty:</label>
+    <input type="text" name="quantity" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</body>
+</html>

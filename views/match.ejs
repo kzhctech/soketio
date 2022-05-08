@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quanty</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%bookList.forEach(book => {%>
+            <tr>
+                <th scope="row"><%= book._id %></th>
+                <td><%= book.name %></td>
+                <td><%= book.price %></td>
+                <td><%= book.quantity %></td>
+		<td><form method="post" action="/del"><input type="hidden" name="id" value="<%= book._id %>"><button type="submit" class="btn btn-danger">Delete</button></form></td>
+            </tr>
+        <%})%>
+        </tbody>
+      </table>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Team 1</th>
+            <th scope="col">Team 2</th>
+            <th scope="col">Status</th>
+            <th scope="col">Batting</th>
+	    <th scope="col">Bowling</th>
+            <th scope="col">Edit/Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%matchList.forEach(match => {%>
+            <tr>
+                <td><%= match.name %></td>
+                <td> <img src="<%= match.team1flug %>" width="50px"> <%= match.team1name %>  <%= match.team1run %> </td>
+                <td> <img src="<%= match.team2flug %>" width="50px"> <%= match.team2name %>  <%= match.team2run %> </td>
+		<td><%= match.status %></td>
+		<td>
+			<div><%= match.bat1name %> <%= match.bat1run %> (<%= match.bat1ball %>)</div>
+			<div><%= match.bat2name %> <%= match.bat2run %> (<%= match.bat2ball %>)</div>
+		</td>
+		<td><%= match.ballname %> <span class="text-right"><%= match.ballover %>-<%= match.ballwk %></span></td>
+		<td>
+                   <form method="post" action="/editm"><input type="hidden" name="id" value="<%= match._id %>"><button type="submit" class="btn btn-danger">Edit</button></form>
+                   <form method="post" action="/delm"><input type="hidden" name="id" value="<%= match._id %>"><button type="submit" class="btn btn-danger">Delete</button></form>
+                </td>
+            </tr>
+        <%})%>
+        </tbody>
+      </table>
+
+
+<form class="" method="post" action="/addm">
+
+ <div class="form-row">
+    <div class="form-group col-md-12">
+          <label for="email">Name:</label><br>
+          <input name="name" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-12">
+          <label for="email">Status:</label><br>
+          <input name="status" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 1 Name:</label>
+    <input name="team1name" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 1 Flug:</label>
+    <input name="team1flug" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Team 1 Run:</label>
+    <input type="text" name="team1run" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 2 Name:</label>
+    <input name="team2name" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="email">Team 2 Flug:</label>
+    <input name="team2flug" type="text" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Team 2 Run:</label>
+    <input type="text" name="team2run" class="form-control">
+    </div>
+
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat1 Name:</label>
+    <input type="text" name="bat1name" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat1 run:</label>
+    <input type="text" name="bat1run" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat1 Ball:</label>
+    <input type="text" name="bat1ball" class="form-control">
+    </div>
+
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat2 Name:</label>
+    <input type="text" name="bat2name" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat2 run:</label>
+    <input type="text" name="bat2run" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Bat2 Ball:</label>
+    <input type="text" name="bat2ball" class="form-control">
+    </div>
+
+    <div class="form-group col-md-4">
+    <label for="pwd">Ball Name:</label>
+    <input type="text" name="ballname" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Ballover:</label>
+    <input type="text" name="ballover" class="form-control">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="pwd">Ballwk:</label>
+    <input type="text" name="ballwk" class="form-control">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</body>
+</html>

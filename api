@@ -1,0 +1,4 @@
+curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "abc", "price": "100", "quantity": "20"}' http://localhost:4000/add
+
+
+curl -i -X DELETE -H 'Content-Type: application/json' -d '{"id":""}' http://localhost:4000/del

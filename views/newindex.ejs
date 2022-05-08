@@ -1,0 +1,144 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Ball2Ball || Live Cricket</title>
+</head>
+<body class="bg-light" > 
+
+   <div class="container">
+    <div class="text-center mb-3"><div class="row"><div class="col-sm-12 col-md-6 col-lg-4">
+<img src="static/logo.png" width="100%" >
+</div></div></div>
+
+
+<h4 class="ml-2 mb-2">Match</h4>
+	<div class="row justify-content-center ">
+
+
+<%matchList.forEach(match => {%>
+
+<div class="col-lg-4 col-md-6">
+<div class="card bg-white mb-3" style="width: 100%;">
+<a href="match/<%= match._id %>" class="match">
+	       <div class="card-header"><%= match.name %></div>
+	         <div class="card-body">
+ 			<div class="row">
+			  <div class="col-6">
+			   <img width="60px" src="<%= match.team1flug %>"> <%= match.team1name %>
+			  </div>
+			  <div class="col-6 text-right">
+			   <%= match.team1run %>
+			  </div>
+			</div>
+ 			<div class="row mt-2">
+			  <div class="col-6">
+			   <img width="60px" src="<%= match.team2flug %>"> <%= match.team2name %>
+			  </div>
+			  <div class="col-6 text-right">
+			   <%= match.team2run %>
+			  </div>
+			</div>
+			<h6 class="text-primary mt-2"><%= match.status %><h6>
+
+	         </div>
+    </a></div>
+</div>
+
+
+
+
+
+ <%})%>
+
+	
+	
+	
+
+
+
+
+
+
+
+   </div>
+
+
+<h4 class="ml-2 mt-3 mb-2">News</h4>
+
+
+<div class="row">
+<div class="col-lg-9">
+<div class="mx-2 mt-2 card" style="max-width: 100%;">
+  <img class="card-img-top" src="https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/332600/332694.4.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Bangladesh hestoric win againest New Zealand</strong></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+	<div class="row justify-content-center ">
+	 
+<div class="col-lg-3 col-md-4">
+<div class="mx-2 mt-2 card" style="max-width: 50rem;">
+  <img class="card-img-top" src="taskin.webp" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Taskin Briliant knock</strong></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+
+
+
+<div class="col-lg-3 col-md-4">
+<div class="mx-2 mt-2 card" style="max-width: 50rem;">
+  <img class="card-img-top" src="taskin.webp" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Taskin Briliant knock</strong></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<div class="col-lg-3 col-md-4">
+<div class="mx-2 mt-2 card" style="max-width: 50rem;">
+  <img class="card-img-top" src="taskin.webp" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Taskin Briliant knock</strong></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+
+
+<div class="col-lg-3 col-md-4">
+<div class="mx-2 mt-2 card" style="max-width: 50rem;">
+  <img class="card-img-top" src="taskin.webp" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Taskin Briliant knock</strong></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+</div>
+
+
+	</div>
+
+
+  </div>
+</body>
+</html>
