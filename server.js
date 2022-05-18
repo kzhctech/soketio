@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 const ejs = require('ejs');
+const cheerio = require('cheerio')
+const axios = require('axios')
+
 const { kStringMaxLength } = require('buffer'); 
 
  const bodyParser = require('body-parser');
@@ -11,6 +14,10 @@ const { kStringMaxLength } = require('buffer');
     .use(bodyParser.urlencoded({
         extended: true
     }));
+
+
+
+
 
 
 
@@ -68,6 +75,13 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 
 
+    // define Schema
+    var matchLink = mongoose.Schema({
+      link:String
+    });
+ 
+    // compile schema to model
+    var Link = mongoose.model('Link', matchLink, 'linkstore');
 
 
 
@@ -82,15 +96,239 @@ db.on('error', console.error.bind(console, 'connection error:'));
     var Book = mongoose.model('Book', BookSchema, 'bookstore');
  
 
+app.get('/link', (req, res) => {
+    Link.find({}, function(err, link) {
+        res.render('link', {
+           link: link[0]
+        })
+    })
+})
+
+
+
+
+app.post('/link',(req,res) => {  
+
+	console.log(req.body.link)
+
+
+    // a document instance
+
+    var link1 = new Link({ link: req.body.link });
+ 
+    // save model to database
+
+    link1.save(function (err, book) {
+      if (err) return console.error(err);
+      console.log(req.body.link + " saved to link collection.");
+	res.redirect('/');
+    });
+
+
+
+
+})
+
+app.post('/linkup', (req, res) => {
+
+Link.findByIdAndUpdate(req.body.id,{
+		link: req.body.link
+
+}, function(err, result){
+
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.redirect('/link')
+        }
+
+    })
+
+
+
+
+})
+
+app.get('/live', (req, res) => {
+    
+
+Link.find({}, function(err, link) {
+
+var cmnty = '';
+console.log(link[0].link);
+axios.get(link[0].link).then((response) => {
+  // Load the web page source code into a cheerio instance
+
+  
+
+  const $ = cheerio.load(response.data);
+  const urlElems = $('.list-content span:nth-child(5)').text();
+  const status = $('.cbz-ui-status').text();
+
+  const title = $('#top').find('div').find('div:nth-child(9)').find('h4').text();
+  const batsman1name = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').text();
+  const batsman2name = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').text();
+  const bowlername = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').text();
+
+
+  const batsman1run = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(2)').text();
+  const batsman2run = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(2)').text();
+  const bowlerwikwt = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(5)').text();
+  const bowlerover = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(2)').text();
+
+  const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+  const batTeam = $('#top h3.ui-li-heading span.miniscore-teams.ui-bat-team-scores').text();
+  const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
+  const crr = $('#top .ui-match-scores-branding .crr').text();
+  var commentry = $('#paginationList').find('div').find('div:nth-child(3)').text();
+  const commentry2 = $('#paginationList').find('div').find('div:nth-child(5)').text();
+if  (!commentry ){
+ commentry =commentry2;
+}
+
+var BatNameRun = batTeam.split(' ');
+var BowlNameRun = bowlTeam.split(' ');
+
+
+ res.render('live', {
+           Title:title,
+	   Status:status,
+           BatName: BatNameRun[0],
+           BatRun:BatNameRun[2],
+	   BatOver:BatNameRun[3],
+           BowlName: BowlNameRun[0],
+           BowlRun:BowlNameRun[2],
+	   BowlOver:BowlNameRun[3],
+	   Bat1Name:batsman1name,
+	   Bat1Run:batsman1run,
+	   Bat2Name:batsman2name,
+	   Bat2Run:batsman2run,
+	   BowlerName:bowlername,
+	   BowlerOver:bowlerover,
+	   BowlerWK:bowlerwikwt
+
+
+        })
+
+  //console.log(commentry);
+  //console.log(commentry2);
+
+
+
+ 
+/*
+  console.log('Title:',title);
+  console.log(' ');
+  console.log('Status:',status);
+  console.log(' ');
+  console.log('Bat:',batTeam,'CRR:',crr);
+  console.log(' ');
+  console.log('Last Balls :',lbb);
+  console.log(' ');
+  console.log(batsman1name,'Run:',batsman1run);
+  console.log(' ');
+  console.log(batsman2name,'Run:',batsman2run);
+  console.log(' ');
+  console.log(bowlername,'Over',bowlerover,'Wicket',bowlerwikwt);
+  console.log(' ');
+  console.log(commentry);
+*/
+
+});
+
+    })
+
+
+
+})
 
 
 
 app.get('/', (req, res) => {
     Match.find({}, function(err, match) {
-        res.render('newindex', {
-           matchList: match
+
+Link.find({}, function(err, link) {
+
+var cmnty = '';
+console.log(link[0].link);
+axios.get(link[0].link).then((response) => {
+  // Load the web page source code into a cheerio instance
+
+  
+
+  const $ = cheerio.load(response.data);
+  const urlElems = $('.list-content span:nth-child(5)').text();
+  const status = $('.cbz-ui-status').text();
+
+  const title = $('#top').find('div').find('div:nth-child(9)').find('h4').text();
+  const batsman1name = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').text();
+  const batsman2name = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').text();
+  const bowlername = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').text();
+
+
+  const batsman1run = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(2)').text();
+  const batsman2run = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(2)').text();
+  const bowlerwikwt = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(5)').text();
+  const bowlerover = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(2)').text();
+
+  const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+  const batTeam = $('#top h3.ui-li-heading span.miniscore-teams.ui-bat-team-scores').text();
+  const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
+  const crr = $('#top .ui-match-scores-branding .crr').text();
+  var commentry = $('#paginationList').find('div').find('div:nth-child(3)').text();
+  const commentry2 = $('#paginationList').find('div').find('div:nth-child(5)').text();
+if  (!commentry ){
+ commentry =commentry2;
+}
+
+var BatNameRun = batTeam.split(' ');
+var BowlNameRun = bowlTeam.split(' ');
+
+ res.render('newindex', {
+          matchList: match,
+	   Title:title,
+           Status:status,
+           BatName: BatNameRun[0],
+           BatRun:BatNameRun[2],
+	   BatOver:BatNameRun[3],
+           BowlName: BowlNameRun[0],
+           BowlRun:BowlNameRun[2],
+	   BowlOver:BowlNameRun[3]
         })
+
+
+  //console.log(commentry);
+  //console.log(commentry2);
+
+
+
+ 
+/*
+  console.log('Title:',title);
+  console.log(' ');
+  console.log('Status:',status);
+  console.log(' ');
+  console.log('Bat:',batTeam,'CRR:',crr);
+  console.log(' ');
+  console.log('Last Balls :',lbb);
+  console.log(' ');
+  console.log(batsman1name,'Run:',batsman1run);
+  console.log(' ');
+  console.log(batsman2name,'Run:',batsman2run);
+  console.log(' ');
+  console.log(bowlername,'Over',bowlerover,'Wicket',bowlerwikwt);
+  console.log(' ');
+  console.log(commentry);
+*/
+
+});
+
+
+    
     })
+})
+
 })
 
 app.post('/edit', (req, res) => {
@@ -265,6 +503,9 @@ app.post('/delm', (req, res) => {
 app.listen(process.env.PORT || 4000, function() {
     console.log('server is running');
 })
+
+
+
 
 
 
