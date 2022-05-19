@@ -1,4 +1,3 @@
-const socket = io('http://localhost:4000');
 const startingLocation = window.location.pathname.substring(1);
 //alert(startingLocation);
 

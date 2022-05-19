@@ -198,6 +198,7 @@ var BowlNameRun = bowlTeam.split(' ');
 
 
  res.render('live', {
+   port:process.env.PORT || 4000,
            Title:title,
 	   Status:status,
            BatName: BatNameRun[0],
@@ -274,7 +275,7 @@ var BowlNameRun = bowlTeam.split(' ');
 	   Title:title,
            Status:status,
            BatName: BatNameRun[0],
-           BatRun:BatNameRun[2],
+           BatRun: `${BatNameRun[2]} ${BatNameRun[3]}  ${BatNameRun[4]}  ${BatNameRun[5]}`,
 	   BatOver:BatNameRun[3],
            BowlName: BowlNameRun[0],
            BowlRun:BowlNameRun[2],
