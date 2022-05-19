@@ -27,13 +27,13 @@
 </div>
 <div class="container">
 <div class="my-2">
-<h5 class="text-danger mb-2">
+<h5 id="statusbar" class="text-danger mb-2">
 <%= Status %>
 </h5>
 </div>
 <div class="row my-3">
 						<div class="col-6"><img class="mr-2" src="" width="50px"><%= BatName %> *</div>
-						<div class="col-6 text-right"><h4><%= BatRun %><small class="text-muted ml-2"><%= BatOver %></small></h4></div>
+						<div class="col-6 text-right"><h4 id="batScore"><%= BatRun %><small class="text-muted ml-2"></small></h4></div>
 </div>
 <div class="row my-2">
 						<div class="col-6"><img src="" class="mr-2" width="50px"><%= BowlName %></div>
@@ -68,23 +68,17 @@
 				<div class="card-header">
 				  	<div class="row">
 						<div class="col-4">Batting</div>
-						<div class="col-4">Run</div>
-						<div class="col-2">4s</div>
-						<div class="col-2">6s</div>
+						<div class="col-8 text-right">Run(B)</div>
 					</div>
 				</div>
 				  <div class="card-body">
 					<div class="row">
-						<div class="col-4"><%= Bat1Name %> </div>
-						<div class="col-4"><%= Bat1Run %> </div>
-						<div class="col-2">5</div>
-						<div class="col-2">30</div>
+						<div class="col-8" id="bat1name"><%= Bat1Name %> </div>
+						<div class="col-4 text-right" id="bat1run"><%= Bat1Run %> </div>
 					</div>
 					<div class="row">
-						<div class="col-4"><%= Bat2Name %> </div>
-						<div class="col-4"><%= Bat2Run %> </div>
-						<div class="col-2">2</div>
-						<div class="col-2">0</div>
+						<div class="col-8" id="bat2name"><%= Bat2Name %> </div>
+						<div class="col-4 text-right" id="bat2run"><%= Bat2Run %> </div>
 					</div>
 				  </div>
 		 </div>
@@ -95,47 +89,23 @@
 				<div class="card-header">
 				  	<div class="row">
 						<div class="col-4">Bowling</div>
-						<div class="col-3">Over</div>
-						<div class="col-2">R</div>
-						<div class="col-3">WK</div>
+						<div class="col-8 text-right">Over-WK</div>
 					</div>
 				</div>
 				  <div class="card-body">
 					<div class="row">
-						<div class="col-4"><%= BowlerName %> </div>
-						<div class="col-3"><%= BowlerOver %>-<%= BowlerWK %>  </div>
-						<div class="col-2">32</div>
-						<div class="col-3">5</div>
+						<div class="col-8" id="bowlerName"><%= BowlerName %> </div>
+						<div class="col-4 text-right" id="bowlerOW"><%= BowlerOver %>-<%= BowlerWK %>  </div>
 					</div>
 				  </div>
 		 </div>
 		</div>
 
-		<div id="lbb">Last Balls</div>
-	<button type="submit" onclick="midwiket()">Midwiket 1</button>
-
-
-	<button type="submit" onclick="deepExtracover()">Deepextracover 1</button>
-
-
-	<button type="submit" onclick="thirdman()">Thirdman 1</button>
-
-
-	<button type="submit" onclick="squreLeg()">Squreleg 1</button>
-
-	<button type="submit" onclick="point()">point 1</button>
-
-	<button type="submit" onclick="midOff()">Midoff 1</button>
-
-	<button type="submit" onclick="midOn()">MidOn</button>
-
-	<button type="submit" onclick="fineLeg()">Fine Leg</button>
-
-       <button type="submit" onclick="gully()">Gully</button>
-
-       <button type="submit" onclick="gully(4)">Gully 4</button>
-
-
+		<div id="lbb">Last Balls
+			<div>
+			<%= LBB %>
+			</div>
+		</div>
 	</div> 
 </body>
 </html>

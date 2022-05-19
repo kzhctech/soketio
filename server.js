@@ -1,10 +1,16 @@
 var mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+  cors: { origin: "*" }
+});
 app.use(express.json());
 const ejs = require('ejs');
 const cheerio = require('cheerio')
 const axios = require('axios')
+
+
 
 const { kStringMaxLength } = require('buffer'); 
 
@@ -195,7 +201,7 @@ var BowlNameRun = bowlTeam.split(' ');
            Title:title,
 	   Status:status,
            BatName: BatNameRun[0],
-           BatRun:BatNameRun[2],
+           BatRun: `${BatNameRun[2]} ${BatNameRun[3]}  ${BatNameRun[4]}  ${BatNameRun[5]}  `,
 	   BatOver:BatNameRun[3],
            BowlName: BowlNameRun[0],
            BowlRun:BowlNameRun[2],
@@ -206,34 +212,12 @@ var BowlNameRun = bowlTeam.split(' ');
 	   Bat2Run:batsman2run,
 	   BowlerName:bowlername,
 	   BowlerOver:bowlerover,
-	   BowlerWK:bowlerwikwt
-
+	   BowlerWK:bowlerwikwt,
+     LBB:lbb
 
         })
 
-  //console.log(commentry);
-  //console.log(commentry2);
 
-
-
- 
-/*
-  console.log('Title:',title);
-  console.log(' ');
-  console.log('Status:',status);
-  console.log(' ');
-  console.log('Bat:',batTeam,'CRR:',crr);
-  console.log(' ');
-  console.log('Last Balls :',lbb);
-  console.log(' ');
-  console.log(batsman1name,'Run:',batsman1run);
-  console.log(' ');
-  console.log(batsman2name,'Run:',batsman2run);
-  console.log(' ');
-  console.log(bowlername,'Over',bowlerover,'Wicket',bowlerwikwt);
-  console.log(' ');
-  console.log(commentry);
-*/
 
 });
 
@@ -497,16 +481,74 @@ app.post('/delm', (req, res) => {
 
 });
 
-
-
-
-app.listen(process.env.PORT || 4000, function() {
-    console.log('server is running');
-})
+io.on('connection', (socket) => {
+  console.log('a user connected');
 
 
 
 
 
+ setInterval(function(){
+  Link.find({}, function(err, link) {
 
+    var cmnty = '';
+    //console.log(link[0].link);
+    axios.get(link[0].link).then((response) => {
+      // Load the web page source code into a cheerio instance
+    
+      
+    
+      const $ = cheerio.load(response.data);
+      const urlElems = $('.list-content span:nth-child(5)').text();
+      const status = $('.cbz-ui-status').text();
+    
+      const title = $('#top').find('div').find('div:nth-child(9)').find('h4').text();
+      const batsman1name = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').text();
+      const batsman2name = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').text();
+      const bowlername = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').text();
+    
+    
+      const batsman1run = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(2)').text();
+      const batsman2run = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(2)').text();
+      const bowlerwikwt = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(5)').text();
+      const bowlerover = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(2)').text();
+    
+      const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+      const batTeam = $('#top h3.ui-li-heading span.miniscore-teams.ui-bat-team-scores').text();
+      const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
+      const crr = $('#top .ui-match-scores-branding .crr').text();
+      var commentry = $('#paginationList').find('div').find('div:nth-child(3)').text();
+      const commentry2 = $('#paginationList').find('div').find('div:nth-child(5)').text();
+    if  (!commentry ){
+     commentry =commentry2;
+    }
+    
+    var BatNameRun = batTeam.split(' ');
+    var BowlNameRun = bowlTeam.split(' ');
+    
+    
+    
+    io.emit('message', {commentry,batTeam:`${BatNameRun[2]} ${BatNameRun[3]}  ${BatNameRun[4]}  ${BatNameRun[5]} `,status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb} );  
+    
+    
+    
+    });
+    
+        })
+
+ },9000)
+
+
+
+
+  socket.on('message', (message) =>     {
+      console.log(message);
+      io.emit('message', message );   
+  });
+});
+
+
+server.listen(process.env.PORT || 4000, function() {
+  console.log('server is running');
+});
 

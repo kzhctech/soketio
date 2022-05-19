@@ -1,4 +1,4 @@
-const socket = io('https://cric24.herokuapp.com');
+const socket = io('http://localhost:4000');
 const startingLocation = window.location.pathname.substring(1);
 //alert(startingLocation);
 
@@ -29,6 +29,8 @@ function midwiket(run){
   setTimeout(function() {
     filder.style.animation = "";
   }, 5000);
+
+  hit('midwiket');
   
 }
 
@@ -235,48 +237,46 @@ function deepExtracover(run){
 
   }
 
-
+  function updateScore(sco){
+    document.getElementById("batScore").innerHTML = sco;  
+ }
+ 
+ 
 
 function updateit(sts){
    document.getElementById("statusbar").innerHTML = sts;  
 }
 
-function updateTitle(tit){
-   document.getElementById("vs").innerHTML = tit;  
-}
-
-function updateScore(sco){
-   document.getElementById("batScore").innerHTML = sco;  
-}
+// function updateTitle(tit){
+//    document.getElementById("vs").innerHTML = tit;  
+// }
 
 
 function updateBat1(name,run){
-   document.getElementById("bat1").innerHTML = name + '' + run + '';  
+   document.getElementById("bat1name").innerHTML = name;  
+   document.getElementById("bat1run").innerHTML = run;  
 }
 
 function updateBat2(name,run){
-   document.getElementById("bat2").innerHTML = name + run;  
+  document.getElementById("bat2name").innerHTML = name;  
+  document.getElementById("bat2run").innerHTML = run;  
 }
 
 
 function updateBowler(name,over,wiket){
-   document.getElementById("bowler").innerHTML = name + ":" + over + "-" + wiket;  
+   document.getElementById("bowlerName").innerHTML = name;
+   document.getElementById("bowlerOW").innerHTML = over + "-" + wiket;  
 }
 
 function updatelbb(lbb){
-   document.getElementById("lbb").innerHTML = lbb;  
+   document.getElementById("lbb").innerHTML = lbb;
 }
 
 socket.on('message',(status)=> {
-  console.log('new');
-  console.log(status.commentry);
-  
-  
-  
-  
-  
-  
-  
+
+  console.log(status);
+  //console.log(status.commentry);
+
     if (status.commentry.includes("point")) {
     point();
   }
@@ -314,25 +314,25 @@ socket.on('message',(status)=> {
   
   
   
-  
-  
-  
-  
   if (status.commentry != dtail){
       dtail = status.commentry;
-      console.log(status.commentry);
+      //console.log(status.commentry);
+      
  }
-if (cmnty != status.batTeam && cmnt != status.batTeam){
+
   cmnt = cmnty;
   cmnty = status.batTeam;
-  //midwiket();
-  updateit(status.status);
-  updatelbb(status.lbb);
-  updateTitle(status.title);
+
   updateScore(status.batTeam);
-  updateBat1(status.batsman1name,status.batsman1run);
-  updateBat2(status.batsman2name,status.batsman2run);
-  updateBowler(status.bowlername,status.bowlerover,status.bowlerwikwt );
+  
+   updateit(status.status);
+   updatelbb(status.lbb);
+  // updateTitle(status.title);
+  // console.log(status.batTeam);
+   updateBat1(status.batsman1name,status.batsman1run);
+   updateBat2(status.batsman2name,status.batsman2run);
+   updateBowler(status.bowlername,status.bowlerover,status.bowlerwikwt );
+
   if (status.commentry.includes("point")) {
     point();
   }
@@ -368,10 +368,8 @@ if (cmnty != status.batTeam && cmnt != status.batTeam){
     deepExtracover();
   }
   
-  console.log(status.batTeam);
-}
 });
 
-function hit(){
-  socket.emit('message',startingLocation);
+function hit(pos){
+  socket.emit('message',pos);
 }
