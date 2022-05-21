@@ -135,6 +135,18 @@ app.post('/link',(req,res) => {
 
 })
 
+app.get('*', function (req, res) {    
+  const protocol = req.protocol;
+  const host = req.hostname;
+  const url = req.originalUrl;
+  const port = process.env.PORT || 4000;
+
+  const fullUrl = `${protocol}://${host}`
+    
+  const responseString = `Full URL is: ${fullUrl}`;                       
+  res.send(responseString);  
+})
+
 app.post('/linkup', (req, res) => {
 
 Link.findByIdAndUpdate(req.body.id,{
