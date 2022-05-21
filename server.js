@@ -165,7 +165,11 @@ app.get('/live', (req, res) => {
   const host = req.hostname;
   const port = process.env.PORT || 4000;
 
-  const fullUrl = `${protocol}://${host}`
+  let fullUrl = `${protocol}://${host}`
+
+  if(!process.env.PORT){
+    fullUrl = `${protocol}://${host}:${port}`
+  }
 
 
 Link.find({}, function(err, link) {
