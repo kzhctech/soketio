@@ -135,17 +135,7 @@ app.post('/link',(req,res) => {
 
 })
 
-app.get('*', function (req, res) {    
-  const protocol = req.protocol;
-  const host = req.hostname;
-  const url = req.originalUrl;
-  const port = process.env.PORT || 4000;
 
-  const fullUrl = `${protocol}://${host}`
-    
-  const responseString = `Full URL is: ${fullUrl}`;                       
-  res.send(responseString);  
-})
 
 app.post('/linkup', (req, res) => {
 
@@ -170,6 +160,13 @@ Link.findByIdAndUpdate(req.body.id,{
 
 app.get('/live', (req, res) => {
     
+
+  const protocol = req.protocol;
+  const host = req.hostname;
+  const port = process.env.PORT || 4000;
+
+  const fullUrl = `${protocol}://${host}:${port}`
+
 
 Link.find({}, function(err, link) {
 
@@ -210,7 +207,7 @@ var BowlNameRun = bowlTeam.split(' ');
 
 
  res.render('live', {
-   port:process.env.PORT || 4000,
+   URL:fullUrl,
            Title:title,
 	   Status:status,
            BatName: BatNameRun[0],
