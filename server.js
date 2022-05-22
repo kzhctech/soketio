@@ -165,7 +165,7 @@ app.get('/live', (req, res) => {
   const host = req.hostname;
   const port = process.env.PORT || 4000;
 
-  let fullUrl = `${protocol}://${host}`
+  let fullUrl = `https://${host}`
 
   if(!process.env.PORT){
     fullUrl = `${protocol}://${host}:${port}`
