@@ -237,7 +237,22 @@ function deepExtracover(run){
   }
 
   function updateScore(sco){
-    document.getElementById("batScore").innerHTML = sco;  
+
+    if(sco.BatName1){
+      
+    document.getElementById("Teambat1name").innerHTML = sco.BatName1;  
+    document.getElementById("bat1Score").innerHTML = sco.BatRun1;
+    }
+ 
+    
+    if(sco.BatName2){
+      document.getElementById("Teambat2name").innerHTML = sco.BatName2;  
+      document.getElementById("bat2Score").innerHTML = sco.BatRun2; 
+      
+    }
+
+
+    
  }
  
  
