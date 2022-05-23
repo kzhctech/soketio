@@ -3,7 +3,10 @@
 {
     color:black;
 }
-
+#Teambat1name{
+  font-size: 22px;
+  font-weight: 600;
+}
 .gwrap{
   display:flex;
   justify-content:center;

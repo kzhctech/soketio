@@ -34,14 +34,6 @@
 <%= Status %>
 </h5>
 </div>
-<div class="row my-3">
-						<div class="col-6"><img class="mr-2" src="static/flg/<%= BatName %>.png" width="40px"> <span id="Teambat1name"><%= BatName %></span></div>
-						<div class="col-6 text-right"><h4 id="bat1Score"><%= BatRun %><small class="text-muted ml-2"></small></h4></div>
-</div>
-<div class="row my-2">
-						<div class="col-6"><img src="static/flg/<%= BowlName %>.png" width="40px" class="mr-2"><span id="Teambat2name"><%= BowlName %></span></div>
-						<div class="col-6 text-right"><h4 id="bat2Score"><%= BowlRun %><small class="text-muted ml-2"></small></h4></div>
-</div>
 </div>
 	<div class="container">
 		<div class="gwrap">
@@ -67,45 +59,51 @@
 		</div>
 
 
-		<% if(LBB){ %>
+		<% if(BatName){ %>
 
 
 			<div>
 				<div class="card bg-white mx-2 mt-3  mb-3">
 					<div class="card-header">
 						  <div class="row">
-							<div class="col-4">Batting</div>
-							<div class="col-8 text-right">Run(B)</div>
+							<div class="col-6 col-md-4"><img class="mr-2" src="" width="40px"> <span id="Teambat1name"><%= BatName %></span></div>
+							<div class="col-6 col-md-4 text-right"><h4 id="bat1Score"><%= BatRun %><small class="text-muted ml-2"></small></h4></div>
+							<div class="col-md-4"><div class="w-100 bg-primary text-white py-1 px-3 text-center"><h5 id="lb">Dot Ball</h5></div></div>
 						</div>
+
+						<% if(BowlName){ %>
+						<div class="row">
+							<div class="col-6"><img src="" width="40px" class="mr-2"><span id="Teambat2name"><%= BowlName %></span></div>
+							<div class="col-6 text-right"><h4 id="bat2Score"><%= BowlRun %><small class="text-muted ml-2"></small></h4></div>
+	</div> <% } %>
 					</div>
 					  <div class="card-body">
 						<div class="row">
-							<div class="col-8" id="bat1name"><%= Bat1Name %> </div>
-							<div class="col-4 text-right" id="bat1run"><%= Bat1Run %> </div>
-						</div>
-						<div class="row">
-							<div class="col-8" id="bat2name"><%= Bat2Name %> </div>
-							<div class="col-4 text-right" id="bat2run"><%= Bat2Run %> </div>
+							<div class="col-md-4 col-sm-12">
+								<div class="row">
+									<div class="col-8" id="bat1name"><%= Bat1Name %> </div>
+									<div class="col-4 text-right" id="bat1run"><%= Bat1Run %> </div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="row">
+									<div class="col-8" id="bat2name"><%= Bat2Name %> </div>
+									<div class="col-4 text-right" id="bat2run"><%= Bat2Run %> </div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="row">
+									<div class="col-8" id="bowlerName"><%= BowlerName %> </div>
+									<div class="col-4 text-right" id="bowlerOW"><%= BowlerOver %>-<%= BowlerWK %>  </div>
+								</div>
+							</div>
 						</div>
 					  </div>
 			 </div>
 			</div>
 	
 		<div>
-				<div class="card bg-white mx-2 mt-3  mb-3">
-					<div class="card-header">
-						  <div class="row">
-							<div class="col-4">Bowling</div>
-							<div class="col-8 text-right">Over-WK</div>
-						</div>
-					</div>
-					  <div class="card-body">
-						<div class="row">
-							<div class="col-8" id="bowlerName"><%= BowlerName %> </div>
-							<div class="col-4 text-right" id="bowlerOW"><%= BowlerOver %>-<%= BowlerWK %>  </div>
-						</div>
-					  </div>
-			 </div>
+
 			</div>
 	
 			<div id="lbb">Last Balls

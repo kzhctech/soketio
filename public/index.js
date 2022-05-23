@@ -284,6 +284,10 @@ function updateBowler(name,over,wiket){
 
 function updatelbb(lbb){
    document.getElementById("lbb").innerHTML = lbb;
+   let lb = lbb.split(' ');
+   lb = lb[lb.length - 1];
+   document.getElementById("lb").innerHTML = lb;
+   console.log(lb);
 }
 
 socket.on('message',(status)=> {
