@@ -1,0 +1,11 @@
+<%newslist.forEach(news => {%>
+
+    <img src="<%= news.thumb %>" alt="" srcset="">
+    <h1><%= news.title %></h1>
+    <h6>Posted On <%= news.createdAt %> </h6>
+    <h4>By <%= news.author %></h4>
+    <p><%= news.content %></p>
+    
+    
+<%})%>
+    

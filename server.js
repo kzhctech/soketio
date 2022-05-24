@@ -70,16 +70,13 @@ db.on('error', console.error.bind(console, 'connection error:'));
     var NewsSchema = mongoose.Schema({
       title: String,
       author: String,
-      date: String,
       content: String,
       thumb:String
-    });
+    },{timestamps: true});
  
     // compile schema to model
     var News = mongoose.model('News', NewsSchema, 'Newstore');
  
-
-
 
     // define Schema
     var matchLink = mongoose.Schema({
@@ -109,6 +106,43 @@ app.get('/link', (req, res) => {
         })
     })
 })
+
+app.get('/news', (req, res) => {
+
+  News.find({},null,{sort:{createdAt:-1}},function(err,news){
+    res.render('news', {
+         newslist: news
+      })
+      
+      console.log(news)
+    });
+})
+
+
+
+
+app.get('/addnews', (req, res) => {
+  res.render('addnews')
+})
+
+app.post('/addnews', (req, res) => {
+  
+
+  var news1 = new News({ title:req.body.title,content:req.body.content,thumb:req.body.img,author:req.body.author });
+ 
+  // save model to database
+
+  news1.save(function (err, news) {
+    if (err) return console.error(err);
+    console.log('news' + " saved to link collection.");
+res.redirect('/news');
+  });
+
+
+
+
+})
+
 
 
 
