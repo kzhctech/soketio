@@ -19,8 +19,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: rotateX(65deg) scale(2);
-  perspective: 90px;
+  @media (min-width: 900px) {
+    transform: rotateX(65deg) scale(2);
+    perspective: 90px;
+  }
+  
   /* border-top-right-radius: 25%;
   border-top-left-radius: 25%; */
 }

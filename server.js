@@ -319,8 +319,10 @@ axios.get(link[0].link).then((response) => {
 
 
 app.get('/', (req, res) => {
-    Match.find({}, function(err, match) {
 
+
+
+Match.find({}, function(err, match) {
 Link.find({}, function(err, link) {
 
 var cmnty = '';
@@ -400,6 +402,7 @@ axios.get(link[0].link).then((response) => {
 
     res.render('newindex', {
       matchList: match,
+      newslist:news,
       Title:title,
       Status:status,
       BatName: BatName1,
@@ -661,6 +664,61 @@ io.on('connection', (socket) => {
     var BatNameRun2 = bowlTeam.split(' ');
     var BatName2 = BatNameRun2[0];
     var BatRun2 = bowlTeam.replace(BatName2, "").replace('-', "");
+
+    const batsman1URL = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').find('a').attr('href');
+    const batsman2URL = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').find('a').attr('href');
+    const bowlerURL = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').find('a').attr('href');
+    
+  
+  
+    var batsman1img;
+    var batsman2img;
+    var bowlerimg;
+    
+  
+    axios.get('https://m.cricbuzz.com'+bowlerURL).then((response) => {
+      // Load the web page source code into a cheerio instance
+    
+      
+    
+      const $ = cheerio.load(response.data); 
+      const imgURL = $('#playerProfile').find('div.thumbnail').find('img').attr('src');
+      bowlerimg = 'https:'+imgURL;
+  
+      //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
+    });
+  
+  
+    axios.get('https://m.cricbuzz.com'+batsman1URL).then((response) => {
+      // Load the web page source code into a cheerio instance
+    
+      
+    
+      const $ = cheerio.load(response.data); 
+      const imgURL = $('#playerProfile').find('div.thumbnail').find('img').attr('src');
+      batsman1img = 'https:'+imgURL;
+  
+      //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
+    });
+  
+  
+    axios.get('https://m.cricbuzz.com'+batsman2URL).then((response) => {
+      // Load the web page source code into a cheerio instance
+    
+      
+    
+      const $ = cheerio.load(response.data); 
+      const imgURL = $('#playerProfile').find('div.thumbnail').find('img').attr('src');
+      batsman2img = 'https:'+imgURL;
+
+      io.emit('img',{batsman1img,batsman2img,bowlerimg});
+      console.log(batsman1img);
+      console.log(batsman2img);
+      console.log(bowlerimg);
+      //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
+    });
+  
+  
     
    if(batTeam){
     io.emit('message', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb} );  

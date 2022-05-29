@@ -290,6 +290,10 @@ function updatelbb(lbb){
    console.log(lb);
 }
 
+socket.on('img',(st) =>{
+  console.log(st);
+})
+
 socket.on('message',(status)=> {
 
   console.log(status);

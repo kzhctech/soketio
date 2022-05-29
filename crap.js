@@ -1,7 +1,7 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
 
-axios.get('https://m.cricbuzz.com/cricket-commentary/46611/ban-vs-sl-1st-test-sri-lanka-tour-of-bangladesh-2022').then((response) => {
+axios.get('https://m.cricbuzz.com/cricket-commentary/48009/nz-vs-csxi-2nd-warm-up-match-new-zealand-tour-of-england-2022').then((response) => {
     // Load the web page source code into a cheerio instance
   
     
@@ -18,7 +18,7 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/46611/ban-vs-sl-1st-test-sr
     const batsman1name = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').text();
     const batsman2name = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').text();
     const bowlername = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').text();
-  
+
   
     const batsman1run = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(2)').text();
     const batsman2run = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(2)').text();
@@ -36,8 +36,66 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/46611/ban-vs-sl-1st-test-sr
   
   var BatNameRun = batTeam.split(' ');
   var BowlNameRun = bowlTeam.split(' ');
+
+
+  const batsman1URL = $('#top table tr:nth-child(2)').first().first().find('td:nth-child(1)').find('a').attr('href');
+  const batsman2URL = $('#top table tr:nth-child(3)').first().first().find('td:nth-child(1)').find('a').attr('href');
+  const bowlerURL = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(1)').find('a').attr('href');
   
-  console.log(batTeam)
+
+
+  var batsman1img;
+  var batsman2img;
+  var bowlerimg;
+  
+
+  axios.get('https://m.cricbuzz.com'+bowlerURL).then((response) => {
+    // Load the web page source code into a cheerio instance
+  
+    
+  
+    const $ = cheerio.load(response.data); 
+    const imgURL = $('#playerProfile').find('div.thumbnail').find('img').attr('src');
+    bowlerimg = 'https:'+imgURL;
+
+    //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
+  });
+
+
+  axios.get('https://m.cricbuzz.com'+batsman1URL).then((response) => {
+    // Load the web page source code into a cheerio instance
+  
+    
+  
+    const $ = cheerio.load(response.data); 
+    const imgURL = $('#playerProfile').find('div.thumbnail').find('img').attr('src');
+    batsman1img = 'https:'+imgURL;
+
+    //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
+  });
+
+
+  axios.get('https://m.cricbuzz.com'+batsman2URL).then((response) => {
+    // Load the web page source code into a cheerio instance
+  
+    
+  
+    const $ = cheerio.load(response.data); 
+    const imgURL = $('#playerProfile').find('div.thumbnail').find('img').attr('src');
+    batsman2img = 'https:'+imgURL;
+    console.log(batsman1img);
+    console.log(batsman2img);
+    console.log(bowlerimg);
+    //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
+  });
+
+
+
+  console.log(batTeam);
+
+
+
+
 
 
     }
@@ -53,7 +111,8 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/46611/ban-vs-sl-1st-test-sr
       var BatNameRun2 = bat2run.split(' ');
       var BatName2 = BatNameRun2[0];
       var BatRun2 = bat2run.replace(BatName2, "").replace('-', "");
-  
+      
+      console.log(bowlerURL);
       console.log(BatName1,':',BatRun1);
       console.log(BatName2,':',BatRun2);
 
