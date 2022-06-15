@@ -77,28 +77,34 @@
 							<div class="col-6 text-right"><h4 id="bat2Score"><%= BowlRun %><small class="text-muted ml-2"></small></h4></div>
 	</div> <% } %>
 					</div>
-					  <div class="card-body">
-						<div class="row">
-							<div class="col-md-4 col-sm-12">
-								<div class="row">
-									<div class="col-8" id="bat1name"><%= Bat1Name %> </div>
-									<div class="col-4 text-right" id="bat1run"><%= Bat1Run %> </div>
+					<% if(Bat1Name){ %>
+						
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-4 col-sm-12">
+									<div class="row">
+										<div class="col-8" id="bat1name"><%= Bat1Name %> </div>
+										<div class="col-4 text-right" id="bat1run"><%= Bat1Run %> </div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-12">
+									<div class="row">
+										<div class="col-8" id="bat2name"><%= Bat2Name %> </div>
+										<div class="col-4 text-right" id="bat2run"><%= Bat2Run %> </div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-12">
+									<div class="row">
+										<div class="col-8" id="bowlerName"><%= BowlerName %> </div>
+										<div class="col-4 text-right" id="bowlerOW"><%= BowlerOver %>-<%= BowlerWK %>  </div>
+									</div>
 								</div>
 							</div>
-							<div class="col-md-4 col-sm-12">
-								<div class="row">
-									<div class="col-8" id="bat2name"><%= Bat2Name %> </div>
-									<div class="col-4 text-right" id="bat2run"><%= Bat2Run %> </div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-12">
-								<div class="row">
-									<div class="col-8" id="bowlerName"><%= BowlerName %> </div>
-									<div class="col-4 text-right" id="bowlerOW"><%= BowlerOver %>-<%= BowlerWK %>  </div>
-								</div>
-							</div>
-						</div>
-					  </div>
+						  </div>
+					
+					
+						<% } %>
+					  
 			 </div>
 			</div>
 	

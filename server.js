@@ -293,6 +293,7 @@ axios.get(link[0].link).then((response) => {
         URL:fullUrl,
         Title:title,
         Status:status,
+        Bat1Name:'',
         BatName: BatName1,
         BatRun: BatRun1,
         BowlName:BatName2,
@@ -402,7 +403,6 @@ axios.get(link[0].link).then((response) => {
 
     res.render('newindex', {
       matchList: match,
-      newslist:news,
       Title:title,
       Status:status,
       BatName: BatName1,
