@@ -292,6 +292,9 @@ function updatelbb(lbb){
 
 socket.on('img',(st) =>{
   console.log(st);
+  document.getElementById("bat1img").setAttribute("src",st.batsman1img);
+  document.getElementById("bat2img").setAttribute("src",st.batsman2img);
+  document.getElementById("bowlerimg").setAttribute("src",st.bowlerimg);
 })
 
 socket.on('message',(status)=> {
