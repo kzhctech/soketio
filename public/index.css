@@ -11,6 +11,14 @@
   display:flex;
   justify-content:center;
 }
+@media only screen and (min-width: 900px) {
+  .gwrap{
+    padding: 50px 50px;
+  }
+  .ground{
+    transform: scale(1.4);
+  }
+}
 .ground{
   background-color: green;
   height: 250px;
@@ -19,11 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (min-width: 900px) {
-    transform: rotateX(65deg) scale(2);
-    perspective: 90px;
-  }
-  
+
   /* border-top-right-radius: 25%;
   border-top-left-radius: 25%; */
 }

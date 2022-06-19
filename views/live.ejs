@@ -66,22 +66,25 @@
 				<div class="card bg-white mx-2 mt-3  mb-3">
 					<div class="card-header">
 						  <div class="row">
-							<div class="col-md-8 col-sm-12">
+							<div class="col-md-4 col-sm-12">
 								<div class="row">
 									<div class="col-3"><img class="mr-2" src="" width="40px"> <span id="Teambat1name"><%= BatName %></span></div>
 									<div class="col-9 text-right"><h4 id="bat1Score"><%= BatRun %><small class="text-muted ml-2"></small></h4></div>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-12">
-								<div class="w-100 bg-primary text-white py-1 px-3 text-center"><h5 id="lb">Dot Ball</h5><div class="bg-danger"><span id="lbb"><%= LBB %></span></div></div>
+								<% if(LBB){ %>	<div class="w-100 bg-primary text-white py-1 px-3 text-center"><h5 id="lb">Dot Ball</h5><div class="bg-danger"><span id="lbb"><%= LBB %></span></div></div> <% } %>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<% if(BowlName){ %>
+									<div class="row">
+										<div class="col-4"><img class="mr-2" src="" width="40px"> <span id="Teambat2name"><%= BowlName %></span></div>
+												<div class="col-8 text-right"><h4 id="bat2Score"><%= BowlRun %><small class="text-muted ml-2"></small></h4></div>
+				</div> <% } %>
 							</div>
 						  </div>
 
-						<% if(BowlName){ %>
-						<div class="row">
-							<div class="col-4"><img class="mr-2" src="" width="40px"> <span id="Teambat2name"><%= BowlName %></span></div>
-									<div class="col-8 text-right"><h4 id="bat2Score"><%= BowlRun %><small class="text-muted ml-2"></small></h4></div>
-	</div> <% } %>
+						
 					</div>
 					<% if(Bat1Name){ %>
 						
@@ -129,11 +132,6 @@
 					  
 			 </div>
 			</div>
-
-
-
-
-
 		  <% } else{ %>  
 			<h1>Game Over</h1>
 		 <% } %>

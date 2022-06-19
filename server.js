@@ -676,6 +676,11 @@ io.on('connection', (socket) => {
     var bowlerimg;
     
   
+  
+  
+    
+   if(batTeam){
+    
     axios.get('https://m.cricbuzz.com'+bowlerURL).then((response) => {
       // Load the web page source code into a cheerio instance
     
@@ -717,10 +722,7 @@ io.on('connection', (socket) => {
       // console.log(bowlerimg);
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
     });
-  
-  
     
-   if(batTeam){
     io.emit('message', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb} );  
     
    }

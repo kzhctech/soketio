@@ -116,7 +116,7 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/47626/mp-vs-ben-1st-semi-fi
       // console.log(bowlerURL);
       // console.log(BatName1,':',BatRun1);
       // console.log(BatName2,':',BatRun2);
-      console.log(lbb);
+      //console.log(lbb);
 
     }
 
