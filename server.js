@@ -322,7 +322,7 @@ axios.get(link[0].link).then((response) => {
 app.get('/', (req, res) => {
 
 
-
+News.find({},null,{sort:{createdAt:-1}},function(err,news){
 Match.find({}, function(err, match) {
 Link.find({}, function(err, link) {
 
@@ -375,9 +375,10 @@ axios.get(link[0].link).then((response) => {
   var BatName2 = BatNameRun2[0];
   var BatRun2 = bowlTeam.replace(BatName2, "").replace('-', "");
   
-  
+  console.log(news);
    res.render('newindex', {
       matchList: match,
+      newslist: news,
       Title:title,
       Status:status,
       BatName: BatName1,
@@ -400,9 +401,10 @@ axios.get(link[0].link).then((response) => {
 
     console.log(BatName1,':',BatRun1);
     console.log(BatName2,':',BatRun2);
-
+    console.log(news);
     res.render('newindex', {
       matchList: match,
+      newslist: news,
       Title:title,
       Status:status,
       BatName: BatName1,
@@ -442,6 +444,7 @@ axios.get(link[0].link).then((response) => {
 
     
     })
+})
 })
 
 })
