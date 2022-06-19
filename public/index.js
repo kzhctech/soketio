@@ -4,6 +4,7 @@ const startingLocation = window.location.pathname.substring(1);
 var cmnty;
 var cmnt;
 var dtail;
+var bat1img,bat2img,bowlerimg;
 
 
 /* Midwicket */
@@ -268,12 +269,14 @@ function updateit(sts){
 
 function updateBat1(name,run){
    document.getElementById("bat1name").innerHTML = name;  
+   console.log(run)
    document.getElementById("bat1run").innerHTML = run;  
 }
 
 function updateBat2(name,run){
   document.getElementById("bat2name").innerHTML = name;  
-  document.getElementById("bat2run").innerHTML = run;  
+  console.log(run)
+  //document.getElementById("bat2run").innerHTML = run;  
 }
 
 
@@ -292,9 +295,20 @@ function updatelbb(lbb){
 
 socket.on('img',(st) =>{
   console.log(st);
-  document.getElementById("bat1img").setAttribute("src",st.batsman1img);
-  document.getElementById("bat2img").setAttribute("src",st.batsman2img);
-  document.getElementById("bowlerimg").setAttribute("src",st.bowlerimg);
+  if( st.batsman1img ){
+    bat1img = st.batsman1img;
+    document.getElementById("bat1img").setAttribute("src",st.batsman1img);
+  }
+  
+  if( st.batsman2img ){
+    bat2img = st.batsman1img;
+    document.getElementById("bat2img").setAttribute("src",st.batsman2img);
+  }
+
+  if( st.bowlerimg ){
+    bowlerimg = st.batsman1img;
+    document.getElementById("bowlerimg").setAttribute("src",st.bowlerimg);
+  }
 })
 
 socket.on('message',(status)=> {

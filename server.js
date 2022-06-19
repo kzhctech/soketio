@@ -712,9 +712,9 @@ io.on('connection', (socket) => {
       batsman2img = 'https:'+imgURL;
 
       io.emit('img',{batsman1img,batsman2img,bowlerimg});
-      console.log(batsman1img);
-      console.log(batsman2img);
-      console.log(bowlerimg);
+      // console.log(batsman1img);
+      // console.log(batsman2img);
+      // console.log(bowlerimg);
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
     });
   
