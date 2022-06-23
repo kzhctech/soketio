@@ -3,34 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/index.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/index.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <title>Cric</title>
   <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
-  <script src="../static/index.js"></script>
-  <title>Ball2Ball || Live Cricket</title>
+  <script>
+	  const socket = io('http://localhost:4000');
+  </script>
+  <script src=""></script>
 </head>
-<body class="bg-light" > 
-   <div class="container">
+<body>
+<div class="container">
+	<div class="row"><div class="col-sm-12 col-md-6 col-lg-4">
+<img src="/static/logo.png" width="100%" >
+</div></div>
+</div>
+
 <div class="bg-primary">
 <div class="container text-white mb-2 py-2">
 <div class="row">
 <div class="col">
-<%= match.name %>
+	<%= match.name %>
 </div>
 </div>
 </div>
 </div>
 <div class="container">
 <div class="my-2">
-<h5 class="text-danger mb-2">Bangladesh Need 45 Run in 26.4 Over</h5>
-</div>
-<div class="row my-3">
-						<div class="col-6"><img class="mr-2" src="" width="50px">Bangladesh *</div>
-						<div class="col-6 text-right"><h4>235/7<small class="text-muted ml-2">24.4</small></h4></div>
-</div>
-<div class="row my-2">
-						<div class="col-6"><img src="" class="mr-2" width="50px">New Zeland</div>
-						<div class="col-6 text-right"><h4>289/5<small class="text-muted ml-2">50</small></h4></div>
+<h5 id="statusbar" class="text-danger mb-2">
+	<%= match.status %>
+</h5>
 </div>
 </div>
 	<div class="container">
@@ -56,81 +58,88 @@
 			</div>
 		</div>
 
-		<div>
-			<div class="card bg-white mx-2 mt-3  mb-3">
-				<div class="card-header">
-				  	<div class="row">
-						<div class="col-4">Batting</div>
-						<div class="col-4">Run</div>
-						<div class="col-2">4s</div>
-						<div class="col-2">6s</div>
+
+		
+
+
+			<div class="card-it">
+				<div class="card bg-white mx-2 mt-3  mb-3">
+					<div class="card-header">
+						  <div class="row">
+							<div class="col-md-4 col-sm-12">
+								<div class="row">
+									<div class="col-3"><span id="Teambat1name"><%= match.team1name %></span></div>
+									<div class="col-9 text-right"><h4 id="bat1Score"><%= match.team1run %><small class="text-muted ml-2"></small></h4></div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12">
+									<div class="w-100 bg-primary text-white py-1 px-3 text-center"><h5 id="lb">Dot Ball</h5></div> 
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<div class="row">
+									<div class="col-3"><span id="Teambat2name"><%= match.team2name %></span></div>
+									<div class="col-9 text-right"><h4 id="bat1Score"><%= match.team2run %><small class="text-muted ml-2"></small></h4></div>
+								</div>
+							</div>
+						  </div>
+
+						
 					</div>
-				</div>
-				  <div class="card-body">
-					<div class="row">
-						<div class="col-4">Tamim *</div>
-						<div class="col-4">153(123)</div>
-						<div class="col-2">5</div>
-						<div class="col-2">30</div>
-					</div>
-					<div class="row">
-						<div class="col-4">Liton</div>
-						<div class="col-4">15(13)</div>
-						<div class="col-2">2</div>
-						<div class="col-2">0</div>
-					</div>
-				  </div>
-		 </div>
-		</div>
+					
+						
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-4 col-sm-12">
+									<div class="row">
+										<div class="col-2">
+											<img id="bat1img" height="50px" width="50px" src="https://png.pngitem.com/pimgs/s/316-3164340_user-face-side-ui-man-avatar-hd-png.png" alt="">
+										</div>
+										<div class="col-10">
+											<h6><span id="bat1name"><%= match.bat1name %></span></h6>
+											<b><span id="bat1run"><%= match.bat1run %>(<%= match.bat1ball %>)</span></b>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-12">
+									<div class="row">
+										<div class="col-2">
+											<img id="bat2img" height="50px" width="50px" src="https://png.pngitem.com/pimgs/s/316-3164340_user-face-side-ui-man-avatar-hd-png.png" alt="">
+										</div>
+										<div class="col-10">
+											<h6><span id="bat2name"><%= match.bat2name %></span></h6>
+											<b><span id="bat2run"><%= match.bat2run %>(<%= match.bat2ball %>)</span></b>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-12">
+									<div class="row">
+										<div class="col-2">
+											<img id="bowlerimg" height="50px" width="50px" src="https://png.pngitem.com/pimgs/s/316-3164340_user-face-side-ui-man-avatar-hd-png.png" alt="">
+										</div>
+										<div class="col-10">
+											<h6><span id="bowlerName"><%= match.ballname %></span></h6>
+											<b><span id="bowlerOW"><%= match.ballover %>-<%= match.ballwk %></span></b>
+										</div>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="bg-light px-4 py-2">
+								<div class="row">
+									<div class="col-md-4">Last Balls:<span id="lbb">... | 0 0 0 W 0 1 | 4 0 0 0 0 0</span></div>
+									<div class="col-md-4">Partnership 34(48)</div>
+									<div class="col-md-4">Last WK:Kurnaratna 23(42)</div>
+								</div>
+							</div>
+						  </div>
+					
+					
+						
+					  
+			 </div>
+			</div>
+		  
 
-	<div>
-			<div class="card bg-white mx-2 mt-3  mb-3">
-				<div class="card-header">
-				  	<div class="row">
-						<div class="col-4">Bowling</div>
-						<div class="col-3">Over</div>
-						<div class="col-2">R</div>
-						<div class="col-3">WK</div>
-					</div>
-				</div>
-				  <div class="card-body">
-					<div class="row">
-						<div class="col-4">Bolt</div>
-						<div class="col-3">10</div>
-						<div class="col-2">32</div>
-						<div class="col-3">5</div>
-					</div>
-				  </div>
-		 </div>
-		</div>
-
-		<div id="lbb">Last Balls</div>
-	<button type="submit" onclick="midwiket()">Midwiket 1</button>
-
-
-	<button type="submit" onclick="deepExtracover()">Deepextracover 1</button>
-
-
-	<button type="submit" onclick="thirdman()">Thirdman 1</button>
-
-
-	<button type="submit" onclick="squreLeg()">Squreleg 1</button>
-
-	<button type="submit" onclick="point()">point 1</button>
-
-	<button type="submit" onclick="midOff()">Midoff 1</button>
-
-	<button type="submit" onclick="midOn()">MidOn</button>
-
-	<button type="submit" onclick="fineLeg()">Fine Leg</button>
-
-       <button type="submit" onclick="gully()">Gully</button>
-
-       <button type="submit" onclick="gully(4)">Gully 4</button>
-
-
-	</div>
-
-  </div>
+	</div> 
 </body>
 </html>

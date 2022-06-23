@@ -234,7 +234,14 @@ axios.get(link[0].link).then((response) => {
     const bowlerwikwt = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(5)').text();
     const bowlerover = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(2)').text();
   
-    const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+    var lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+    if (!lbb){
+      lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(5)').text();
+    }
+    
+    var pship = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(2)').text();
+    var lw = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(5)').text();
+    
     const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
     const crr = $('#top .ui-match-scores-branding .crr').text();
     var commentry = $('#paginationList').find('div').find('div:nth-child(3)').text();
@@ -267,9 +274,10 @@ axios.get(link[0].link).then((response) => {
       BowlerName:bowlername,
       BowlerOver:bowlerover,
       BowlerWK:bowlerwikwt,
-      LBB:lbb
- 
-         })
+      LBB:lbb,
+      PS:pship,
+      LW:lw
+    })
 
 
     }
@@ -491,7 +499,6 @@ Match.findByIdAndUpdate(req.body.id,{
 app.post('/editm', (req, res) => {
 console.log(req.body.id)  
 Match.find({_id:req.body.id}, function(err, match) {
-
 	console.log(match[0].name)  
         res.render('edit', {
            match: match[0]
@@ -510,6 +517,60 @@ Match.find({_id:req.params.id}, function(err, match) {
     })
 
 });
+
+
+app.get('/news/:id', function(req, res) {
+News.find({_id:req.params.id}, function(err, news) {
+	console.log(news[0].title)  
+        res.render('news-single', {
+           news: news[0]
+        })
+    })
+});
+
+app.get('/news/edit/:id', function(req, res) {
+News.find({_id:req.params.id}, function(err, news) {
+	console.log(news[0].title)  
+        res.render('news-edit', {
+           news: news[0]
+        })
+    })
+});
+
+
+
+app.post('/newsup', (req, res) => {
+
+  News.findByIdAndUpdate(req.body.id,{
+      title: req.body.title,
+      thumb:req.body.img,
+      content:req.body.content,
+      author:req.body.author
+  
+  }, function(err, result){
+  
+          if(err){
+              res.send(err)
+          }
+          else{
+              res.redirect('/news');
+              console.log(result);
+          }
+  
+      })
+  
+  
+  
+  
+  })
+
+
+app.get('/news/delete/:id', function(req, res) {
+  News.remove({_id:req.params.id}, function(err){
+    if(err) throw err;})
+    res.redirect('/news');
+});
+
 
 
 app.get('/match', (req, res) => {
@@ -647,7 +708,14 @@ io.on('connection', (socket) => {
       const bowlerwikwt = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(5)').text();
       const bowlerover = $('#top').find('div:nth-child(11)').find('div:nth-child(3)').find('tr:nth-child(2)').find('td:nth-child(2)').text();
     
-      const lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+      var lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(8)').text();
+      if (!lbb){
+        lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(5)').text();
+      }
+
+      var pship = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(2)').text();
+      var lw = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(5)').text();
+
       const batTeam = $('#top h3.ui-li-heading span.miniscore-teams.ui-bat-team-scores').text();
       const bowlTeam = $('#top h3.ui-li-heading span.teamscores.ui-bowl-team-scores').text();
       const crr = $('#top .ui-match-scores-branding .crr').text();
@@ -656,7 +724,9 @@ io.on('connection', (socket) => {
     if  (!commentry ){
      commentry =commentry2;
     }
-    
+    if(!commentry){
+      commentry = $('#paginationList').find('div').find('div:nth-child(6)').text();
+    }
     var BatNameRun = batTeam.split(' ');
     var BowlNameRun = bowlTeam.split(' ');
     
@@ -726,7 +796,7 @@ io.on('connection', (socket) => {
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
     });
     
-    io.emit('message', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb} );  
+    io.emit('message', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb,pship,lw} );  
     
    }
     

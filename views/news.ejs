@@ -5,7 +5,9 @@
     <h6>Posted On <%= news.createdAt %> </h6>
     <h4>By <%= news.author %></h4>
     <p><%= news.content %></p>
-    
+    <a href="/news/<%= news._id %>">Read More</a>
+    <a href="/news/edit/<%= news._id %>">Edit</a>
+    <a href="/news/delete/<%= news._id %>">Delete</a>
     
 <%})%>
     

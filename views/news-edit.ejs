@@ -1,0 +1,8 @@
+<form action="/newsup" method="post">
+    <input type="text" value="<%= news.title %>" name="title" placeholder="Title" id="">
+    <input type="hidden" name="id" value="<%= news._id %>">
+    <input type="text" name="img" value="<%= news.thumb %>" placeholder="Image URL">
+    <textarea name="content" id="" cols="30" rows="10"><%= news.content %></textarea>
+    <input type="text" name="author" value="<%= news.author %>" placeholder="author" id="">
+    <input type="submit" value="Update">
+</form>

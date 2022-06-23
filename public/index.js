@@ -29,8 +29,6 @@ function midwiket(run){
   setTimeout(function() {
     filder.style.animation = "";
   }, 5000);
-
-  hit('midwiket');
   
 }
 
@@ -261,6 +259,12 @@ function deepExtracover(run){
 function updateit(sts){
    document.getElementById("statusbar").innerHTML = sts;  
 }
+function updatePS(sts){
+   document.getElementById("ps").innerHTML = sts;  
+}
+function updateLW(sts){
+   document.getElementById("lw").innerHTML = sts;  
+}
 
 // function updateTitle(tit){
 //    document.getElementById("vs").innerHTML = tit;  
@@ -269,14 +273,12 @@ function updateit(sts){
 
 function updateBat1(name,run){
    document.getElementById("bat1name").innerHTML = name;  
-   console.log(run)
    document.getElementById("bat1run").innerHTML = run;  
 }
 
 function updateBat2(name,run){
   document.getElementById("bat2name").innerHTML = name;  
-  console.log(run)
-  //document.getElementById("bat2run").innerHTML = run;  
+  document.getElementById("bat2run").innerHTML = run;  
 }
 
 
@@ -294,7 +296,7 @@ function updatelbb(lbb){
 }
 
 socket.on('img',(st) =>{
-  console.log(st);
+  //console.log(st);
   if( st.batsman1img ){
     bat1img = st.batsman1img;
     document.getElementById("bat1img").setAttribute("src",st.batsman1img);
@@ -313,42 +315,46 @@ socket.on('img',(st) =>{
 
 socket.on('message',(status)=> {
 
-  console.log(status);
-  //console.log(status.commentry);
+  console.log(status.commentry);
+  console.log(status.pship);
+  console.log(status.lw);
 
     if (status.commentry.includes("point")) {
-    point();
+    point(parseInt(status.lb, 10));
+  }
+    if (status.commentry.includes("fine-leg")) {
+      fineLeg(parseInt(status.lb, 10));
   }
   
   else if (status.commentry.includes("mid-on")) {
-    midOn();
+    midOn(parseInt(status.lb, 10));
   }
 
   else if (status.commentry.includes("mid-of")) {
-    midOff();
+    midOff(parseInt(status.lb, 10));
   }
 
   else if (status.commentry.includes("mid-wicket")) {
-    midwiket();
+    midwiket(parseInt(status.lb, 10));
   }
   
   else if (status.commentry.includes("square")) {
-    squreLeg();
+    squreLeg(parseInt(status.lb, 10));
   }
   
   else if (status.commentry.includes("third")) {
-    thirdman();
+    thirdman(parseInt(status.lb, 10));
   }
   
   else if (status.commentry.includes("cover")) {
-    deepExtracover();
+    deepExtracover(parseInt(status.lb, 10));
   }
 
   else if (status.commentry.includes("long-on")) {
-    midwiket();
+    midwiket(parseInt(status.lb, 10));
   }
   else if (status.commentry.includes("long-of")) {
-    deepExtracover();
+    deepExtracover(parseInt(status.lb, 10));
   }
   
   
@@ -366,6 +372,8 @@ socket.on('message',(status)=> {
   
    updateit(status.status);
    updatelbb(status.lbb);
+   updateLW(status.lw);
+   updatePS(status.pship);
   // updateTitle(status.title);
   // console.log(status.batTeam);
    updateBat1(status.batsman1name,status.batsman1run);
@@ -373,38 +381,38 @@ socket.on('message',(status)=> {
    updateBowler(status.bowlername,status.bowlerover,status.bowlerwikwt );
 
   if (status.commentry.includes("point")) {
-    point();
+    point(status.lb);
   }
   
   else if (status.commentry.includes("mid-on")) {
-    midOn();
+    midOn(status.lb);
   }
 
   else if (status.commentry.includes("mid-of")) {
-    midOff();
+    midOff(status.lb);
   }
 
   else if (status.commentry.includes("mid-wicket")) {
-    midwiket();
+    midwiket(status.lb);
   }
   
   else if (status.commentry.includes("square")) {
-    squreLeg();
+    squreLeg(status.lb);
   }
   
   else if (status.commentry.includes("third")) {
-    thirdman();
+    thirdman(status.lb);
   }
   
   else if (status.commentry.includes("cover")) {
-    deepExtracover();
+    deepExtracover(status.lb);
   }
 
   else if (status.commentry.includes("long-on")) {
-    midwiket();
+    midwiket(status.lb);
   }
   else if (status.commentry.includes("long-of")) {
-    deepExtracover();
+    deepExtracover(status.lb);
   }
   
 });

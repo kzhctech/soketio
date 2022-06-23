@@ -17,7 +17,7 @@
 </div></div></div>
 
 
-<h4 class="ml-2 mb-2">Match</h4>
+<h4>Match</h4>
 	<div class="row justify-content-center ">
 
 <div class="col-lg-4 col-md-6">
@@ -56,7 +56,7 @@
 	         <div class="card-body">
  			<div class="row">
 			  <div class="col-6">
-			   <img width="40px" src="<%= match.team1flug %>"> <%= match.team1name %>
+			   <%= match.team1name %>
 			  </div>
 			  <div class="col-6 text-right">
 			   <%= match.team1run %>
@@ -64,7 +64,7 @@
 			</div>
  			<div class="row mt-2">
 			  <div class="col-6">
-			   <img width="40px" src="<%= match.team2flug %>"> <%= match.team2name %>
+			   <%= match.team2name %>
 			  </div>
 			  <div class="col-6 text-right">
 			   <%= match.team2run %>
@@ -85,17 +85,18 @@
    </div>
 
 
-<h4 class="ml-2 mt-3 mb-2">News</h4>
+<h4>News</h4>
 
-	<div class="row justify-content-center ">
+	<div class="row justify-content-center">
 
 		<%newslist.forEach(news => {%>
-			<div class="col-md-4">
-				<img src="<%= news.thumb %>" alt="" srcset="">
-				<h3><%= news.title %></h3>
-				<h6>Posted On <%= news.createdAt %> </h6>
+			<div class="col-md-4 mb-4">
+				<img src="<%= news.thumb %>" width="100%" alt="" srcset="">
+				<div class="py-3 bg-white px-3">
+				<h4><%= news.title %></h4>
 				<h6>By <%= news.author %></h6>
-				<p><%= news.content %></p>
+				<a href="news/<%= news._id %>">Read More</a>
+				</div>
 				
 			</div>
 			
