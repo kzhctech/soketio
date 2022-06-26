@@ -1,5 +1,31 @@
-<img src="<%= news.thumb %>" alt="" srcset="">
-				<h3><%= news.title %></h3>
-				<h6>Posted On <%= news.createdAt %> </h6>
-				<h6>By <%= news.author %></h6>
-<p><%= news.content %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/index.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <title>Cric</title>
+  <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
+  <script>
+	  const socket = io('<%= URL %>');
+  </script>
+  <script src="/static/index.js"></script>
+</head>
+<body class="bg-light">
+<div class="container">
+	<div class="row"><div class="col-sm-12 col-md-6 col-lg-4">
+		<img src="/static/logo.png" width="100%" >
+		</div></div>
+		<div class="bg-white px-4 py-3">
+			<div class="my-1">
+				<h2><%= news.title %></h2>
+					<h6 class="text-muted">By <span class="text-primary"><%= news.author %> </span>Posted On <%= news.createdAt %> </h6>
+			</div>
+		<img class="img-fluid" src="<%= news.thumb %>" alt="" srcset="">
+					
+	<p class="my-3"><%= news.content %></p>
+		</div>
+</div> 
+</body>
+</html>
