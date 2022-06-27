@@ -796,7 +796,7 @@ io.on('connection', (socket) => {
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
     });
     
-    io.emit('message', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb,pship,lw} );  
+    io.emit('match', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb,pship,lw} );  
     
    }
     
@@ -810,10 +810,12 @@ io.on('connection', (socket) => {
 
 
 
-  socket.on('message', (message) =>     {
-      console.log(message);
-      io.emit('message', message );   
-  });
+ socket.on('message', (message) =>     {
+  console.log(message);
+  io.emit('message', `${socket.id.substr(0,2)} said ${message}` );   
+});
+
+
 });
 
 

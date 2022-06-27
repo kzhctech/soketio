@@ -313,7 +313,7 @@ socket.on('img',(st) =>{
   }
 })
 
-socket.on('message',(status)=> {
+socket.on('match',(status)=> {
 
   console.log(status.commentry);
   console.log(status.pship);
@@ -417,6 +417,26 @@ socket.on('message',(status)=> {
   
 });
 
-function hit(pos){
-  socket.emit('message',pos);
+
+
+
+socket.on('message', text => {
+
+  const el = document.createElement('li');
+  el.innerHTML = text;
+  document.querySelector('ul').appendChild(el);
+  console.log(text);
+
+});
+
+// document.querySelector('button').onclick = () => {
+
+//   const text = document.querySelector('input').value;
+//   socket.emit('message', text)
+  
+// }
+
+function chat(){
+  const text = document.querySelector('input').value;
+  socket.emit('message', text)
 }
