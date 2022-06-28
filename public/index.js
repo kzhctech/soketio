@@ -452,6 +452,8 @@ function chat(){
     name = document.cookie;
   }
   let body = document.querySelector('#usrmsg').value;
+  let elm =  document.querySelector('.chat');
   socket.emit('message', {name,body});
   document.querySelector('#usrmsg').value = "";
+  elem.scrollTop = elem.scrollHeight;
 }

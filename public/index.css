@@ -1,4 +1,9 @@
-
+.chat{
+  height: 150px;
+    background-color: red;
+    display: block;
+    overflow-y: scroll;
+}
 .match
 {
     color:black;
