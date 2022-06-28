@@ -420,12 +420,13 @@ socket.on('match',(status)=> {
 
 
 
-socket.on('message', text => {
+socket.on('message', (msg) => {
 
   const el = document.createElement('li');
-  el.innerHTML = text;
+  el.classList.add('list-group-item');
+  el.innerHTML ="<h5>" + msg.name + ":</h5>" + msg.body;
   document.querySelector('ul').appendChild(el);
-  console.log(text);
+  console.log(msg);
 
 });
 
@@ -437,6 +438,19 @@ socket.on('message', text => {
 // }
 
 function chat(){
-  const text = document.querySelector('input').value;
-  socket.emit('message', text)
+  let name;
+  if(!document.cookie){
+    name =  prompt("Please enter your name", "")
+    if (name != null) {
+      document.cookie = name;
+      name = document.cookie;
+    }
+    else{
+      name = "Announms";
+    }
+  }else{
+    name = document.cookie;
+  }
+  const body = document.querySelector('#usrmsg').value;
+  socket.emit('message', {name,body});
 }
