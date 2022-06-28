@@ -451,6 +451,7 @@ function chat(){
   }else{
     name = document.cookie;
   }
-  const body = document.querySelector('#usrmsg').value;
+  let body = document.querySelector('#usrmsg').value;
   socket.emit('message', {name,body});
+  document.querySelector('#usrmsg').value = "";
 }
