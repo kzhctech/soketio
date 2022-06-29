@@ -462,7 +462,7 @@ function chat(){
   }, 300);
   elm.scrollTop = elm.scrollHeight;
   socket.emit('message', {name,body});
-  
+  document.querySelector('#usrmsg').value = "";
 }
 
 // setInterval( function() {
