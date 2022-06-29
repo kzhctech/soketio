@@ -426,6 +426,10 @@ socket.on('message', (msg) => {
   el.classList.add('list-group-item');
   el.innerHTML ="<b>" + msg.name + ":</b>" + msg.body;
   document.querySelector('ul').appendChild(el);
+  let elm = document.getElementById("myDIV");
+  setTimeout(function() {
+    elm.scrollTop = elm.scrollHeight;
+  }, 300);
   //console.log(msg);
 
 });
