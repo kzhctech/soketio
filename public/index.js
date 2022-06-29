@@ -292,7 +292,7 @@ function updatelbb(lbb){
    let lb = lbb.split(' ');
    lb = lb[lb.length - 1];
    document.getElementById("lb").innerHTML = lb;
-   console.log(lb);
+   //console.log(lb);
 }
 
 socket.on('img',(st) =>{
@@ -315,9 +315,9 @@ socket.on('img',(st) =>{
 
 socket.on('match',(status)=> {
 
-  console.log(status.commentry);
-  console.log(status.pship);
-  console.log(status.lw);
+  //console.log(status.commentry);
+  //console.log(status.pship);
+  //console.log(status.lw);
 
     if (status.commentry.includes("point")) {
     point(parseInt(status.lb, 10));
@@ -424,9 +424,9 @@ socket.on('message', (msg) => {
 
   const el = document.createElement('li');
   el.classList.add('list-group-item');
-  el.innerHTML ="<h5>" + msg.name + ":</h5>" + msg.body;
+  el.innerHTML ="<b>" + msg.name + ":</b>" + msg.body;
   document.querySelector('ul').appendChild(el);
-  console.log(msg);
+  //console.log(msg);
 
 });
 
@@ -452,8 +452,17 @@ function chat(){
     name = document.cookie;
   }
   let body = document.querySelector('#usrmsg').value;
-  let elm =  document.querySelector('.chat');
+  let elm = document.getElementById("myDIV");
+  setTimeout(function() {
+    elm.scrollTop = elm.scrollHeight;
+  }, 300);
+  elm.scrollTop = elm.scrollHeight;
   socket.emit('message', {name,body});
-  document.querySelector('#usrmsg').value = "";
-  elem.scrollTop = elem.scrollHeight;
+  
 }
+
+// setInterval( function() {
+//   let elm = document.getElementById("myDIV");
+//   elm.scrollTop = elm.scrollHeight;
+//     console.log('hi');
+// },1000);

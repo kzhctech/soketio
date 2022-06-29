@@ -1,8 +1,10 @@
-.chat{
-  height: 150px;
-    background-color: red;
-    display: block;
-    overflow-y: scroll;
+#myDIV{
+  height: 75px;
+  width: 100%;
+  overflow: auto;
+}
+.mb-75{
+  margin-bottom: 75px;
 }
 .match
 {
