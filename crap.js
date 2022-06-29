@@ -1,5 +1,5 @@
 const axios = require('axios')
-const cheerio = require('cheerio')
+const cheerio = require('cheerio');
 
 axios.get('https://m.cricbuzz.com/cricket-commentary/47626/mp-vs-ben-1st-semi-final-ranji-trophy-2021-22').then((response) => {
     // Load the web page source code into a cheerio instance
@@ -121,4 +121,7 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/47626/mp-vs-ben-1st-semi-fi
     }
 
   
+  }).catch(function (error) {
+    // handle error
+    console.log(error);
   });

@@ -508,11 +508,22 @@ Match.find({_id:req.body.id}, function(err, match) {
 
 
 app.get('/match/:id', function(req, res) {
+  const protocol = req.protocol;
+  const host = req.hostname;
+  const port = process.env.PORT || 4000;
+
+  let fullUrl = `https://${host}`
+
+  if(!process.env.PORT){
+    fullUrl = `${protocol}://${host}:${port}`
+  }
+
   //res.send("tagId is set to " + req.params.id);
 Match.find({_id:req.params.id}, function(err, match) {
 	console.log(match[0].name)  
         res.render('onematch', {
-           match: match[0]
+           match: match[0],
+           iourl:fullUrl
         })
     })
 
