@@ -6,6 +6,12 @@ var cmnt;
 var dtail;
 var bat1img,bat2img,bowlerimg;
 
+function scroll(){
+  let elm = document.getElementById("myDIV");
+  setTimeout(function() {
+    elm.scrollTop = elm.scrollHeight;
+  }, 300);
+}
 
 /* Midwicket */
 
