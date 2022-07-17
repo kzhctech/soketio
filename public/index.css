@@ -25,6 +25,18 @@
   .ground{
     transform: scale(1.4);
   }
+  #cbox{
+    height: 380px;
+    width: 320px;
+    position: absolute;
+    top:110px;
+    right: 120px;
+    background-color: rgb(247, 247, 247);
+    padding:8px;
+  }
+  #myDIV{
+    height: 250px;
+  }
 }
 .ground{
   background-color: green;
