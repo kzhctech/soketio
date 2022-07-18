@@ -38,6 +38,18 @@
     height: 250px;
   }
 }
+#adv{
+  position: absolute;
+  height: 120px;
+  width: 250px;
+  z-index: 999999;
+  background-color: white;
+  padding-top: 40px;
+  margin-top: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: none;
+}
 .ground{
   background-color: green;
   height: 250px;

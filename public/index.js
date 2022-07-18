@@ -240,13 +240,30 @@ function deepExtracover(run){
   }, 5000);
 
   }
+  function showAD(){
+    document.getElementById("adv").style.display = "block";
+  }
+
+  
+  function hideAD(){
+    document.getElementById("adv").style.display = "none";
+  }
+
 
   function updateScore(sco){
 
     if(sco.BatName1){
-      
     document.getElementById("Teambat1name").innerHTML = sco.BatName1;  
     document.getElementById("bat1Score").innerHTML = sco.BatRun1;
+     let ovr = sco.BatRun1.split(' ');
+    ovr = ovr[ovr.length - 1];
+    console.log(ovr);
+    if (ovr.includes(".")) {
+      hideAD();
+    }
+    else{
+      showAD();
+    }
     }
  
     
