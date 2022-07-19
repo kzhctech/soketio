@@ -80,7 +80,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
     // define Schema
     var matchLink = mongoose.Schema({
-      link:String
+      link:String,
+      ad:String
     });
  
     // compile schema to model
@@ -149,8 +150,8 @@ res.redirect('/news');
 
 app.post('/link',(req,res) => {  
 
-	console.log(req.body.link)
-
+	console.log(req.body.link);
+  console.log(req.body.ad);
 
     // a document instance
 
@@ -174,7 +175,8 @@ app.post('/link',(req,res) => {
 app.post('/linkup', (req, res) => {
 
 Link.findByIdAndUpdate(req.body.id,{
-		link: req.body.link
+		link: req.body.link,
+    ad:req.body.ad
 
 }, function(err, result){
 
@@ -276,7 +278,8 @@ axios.get(link[0].link).then((response) => {
       BowlerWK:bowlerwikwt,
       LBB:lbb,
       PS:pship,
-      LW:lw
+      LW:lw,
+      ad:link[0].ad
     })
 
 

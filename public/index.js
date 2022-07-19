@@ -402,6 +402,7 @@ socket.on('match',(status)=> {
    updateBat1(status.batsman1name,status.batsman1run);
    updateBat2(status.batsman2name,status.batsman2run);
    updateBowler(status.bowlername,status.bowlerover,status.bowlerwikwt );
+   console.log(status.lb);
 
   if (status.commentry.includes("point")) {
     point(status.lb);
