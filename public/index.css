@@ -23,7 +23,12 @@
     padding: 50px 50px;
   }
   .ground{
-    transform: scale(1.4);
+    transform: rotateX(35deg) scaleX(3.8);
+    perspective: 300px;
+    transform-style: preserve-3d;
+    background-size: cover;
+    margin-top: 300px;
+    margin-left: 50px;
   }
   #cbox{
     height: 380px;
@@ -51,7 +56,7 @@
   display: none;
 }
 .ground{
-  background-color: green;
+  /* background-color: green; */
   height: 250px;
   width: 250px;
   border-radius: 50%;
@@ -82,16 +87,16 @@
   position: relative;
 }
 #ball{
-  height: 8px;
-  width: 8px;
+  height: 18px;
+  width: 18px;
   border-radius: 50%;
   position: absolute;
   background-color: red;
 }
 .filder{
   background-color: white;
-  height: 5px;
-  width: 5px;
+  height: 15px;
+  width: 15px;
   position: absolute;
   border-radius: 50%;
 }
