@@ -22,22 +22,15 @@
   .gwrap{
     padding: 50px 50px;
     background-position-y: 400px;
+    background-image:url('ground.jpg');
   }
   .ground{
     transform: rotateX(35deg) scaleX(3.8);
     perspective: 300px;
+    background: transparent!important;
     transform-style: preserve-3d;
     background-size: cover;
     margin-left: 50px;
-  }
-  #cbox{
-    height: 380px;
-    width: 320px;
-    position: absolute;
-    top:110px;
-    right: 20px;
-    background-color: rgb(247, 247, 247);
-    padding:8px;
   }
   #myDIV{
     height: 250px;
@@ -55,7 +48,7 @@
   display: none;
 }
 .ground{
-  /* background-color: green; */
+  background-color: green;
   height: 250px;
   width: 250px;
   border-radius: 50%;

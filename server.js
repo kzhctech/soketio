@@ -727,6 +727,9 @@ io.on('connection', (socket) => {
         lbb = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(5)').text();
       }
 
+      let lb = lbb.split(' ');
+      lb = lb[lb.length - 1];
+
       var pship = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(2)').text();
       var lw = $('#top').find('div').find('div:nth-child(11)').find('div.cb-list-item.miniscore-data.ui-branding-style.ui-branding-style-partner').find('div').children().children().find('span:nth-child(5)').text();
 
@@ -810,7 +813,7 @@ io.on('connection', (socket) => {
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
     });
     
-    io.emit('match', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb,pship,lw} );
+    io.emit('match', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb,lb,pship,lw} );
    }
     
     
