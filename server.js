@@ -320,7 +320,10 @@ axios.get(link[0].link).then((response) => {
 
 
 
-});
+}).catch(function (error) {
+    // handle error
+    console.log('404');
+  });
 
     })
 
@@ -426,31 +429,9 @@ axios.get(link[0].link).then((response) => {
   }
 
 
-  //console.log(commentry);
-  //console.log(commentry2);
-
-
-
- 
-/*
-  console.log('Title:',title);
-  console.log(' ');
-  console.log('Status:',status);
-  console.log(' ');
-  console.log('Bat:',batTeam,'CRR:',crr);
-  console.log(' ');
-  console.log('Last Balls :',lbb);
-  console.log(' ');
-  console.log(batsman1name,'Run:',batsman1run);
-  console.log(' ');
-  console.log(batsman2name,'Run:',batsman2run);
-  console.log(' ');
-  console.log(bowlername,'Over',bowlerover,'Wicket',bowlerwikwt);
-  console.log(' ');
-  console.log(commentry);
-*/
-
-});
+}).catch(function (error) {
+    console.log('404');
+  });
 
 
     
@@ -817,7 +798,11 @@ io.on('connection', (socket) => {
    }
     
     
-    });
+    }).catch(function (error) {
+    // handle error
+    console.log('404');
+  });
+;
     
         })
 

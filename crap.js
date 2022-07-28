@@ -1,6 +1,41 @@
 const axios = require('axios')
 const cheerio = require('cheerio');
 
+
+setInterval(function(){
+ axios.get('https://cricket.one/scoreboard/EVL/139/2nd-TEST/T/U/sl-vs-pak-2nd-test-pakistan-tour-of-sri-lanka-2022/live').then((response) => {
+    const $ = cheerio.load(response.data);
+    var str = $('#topDiv').find('div:nth-child(1)').children().find('.cm-b-comment-c2').text();
+    var cmnty = str.split("\n");
+
+if(cmnty[0]){console.log(cmnty[0]);}
+else{console.log(cmnty[1]);}
+console.log('');
+
+    }).catch(function (error) {
+    // handle error
+    console.log('404');
+  });
+
+}
+, 10000);
+
+//#topDiv > div:nth-child(1) > div
+/*
+
+<div _ngcontent-sc64="" class="col-12"><div _ngcontent-sc64="" class="d-flex ali
+gn-items-baseline"><span _ngcontent-sc64="" class="cm-b-over"> 32.2 </span><!---
+-><!----><span _ngcontent-sc64="" class="cm-b-comment-c1">R Mendis to B Azam</sp
+an></div><div _ngcontent-sc64="" class="d-flex text-align-start" style="margin-t
+op: 0.75em;"><span _ngcontent-sc64="" class="cm-b-ballupdate cm-o-b-0 cm-o-b-all
+"> 0 </span><span _ngcontent-sc64="" class="cm-b-comment-c2">
+</span></div></div>
+
+
+
+
+
+
 axios.get('https://m.cricbuzz.com/cricket-commentary/47626/mp-vs-ben-1st-semi-final-ranji-trophy-2021-22').then((response) => {
     // Load the web page source code into a cheerio instance
   
@@ -125,3 +160,5 @@ axios.get('https://m.cricbuzz.com/cricket-commentary/47626/mp-vs-ben-1st-semi-fi
     // handle error
     console.log(error);
   });
+
+*/
