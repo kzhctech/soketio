@@ -322,6 +322,7 @@ axios.get(link[0].link).then((response) => {
 
 }).catch(function (error) {
     // handle error
+//ok
     console.log('404');
   });
 
