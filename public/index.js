@@ -430,25 +430,34 @@ socket.on('message', (msg) => {
   
 // }
 
+
+/*
+localStorage.setItem("name", "Smith");
+localStorage.getItem("name");
+*/
+
 function chat(){
   let name;
-  if(!document.cookie){
+  if(!localStorage.getItem("name")){
     name =  prompt("Please enter your name", "")
     if (name != null) {
-      document.cookie = name;
-      name = document.cookie;
+      localStorage.setItem("name", name);
+      name = localStorage.getItem("name");
     }
     else{
       name = "Announms";
     }
   }else{
-    name = document.cookie;
+    name = localStorage.getItem("name");
   }
   let body = document.querySelector('#usrmsg').value;
   let elm = document.getElementById("myDIV");
   setTimeout(function() {
     elm.scrollTop = elm.scrollHeight;
   }, 300);
+
+console.log(localStorage.getItem("name"));
+
   elm.scrollTop = elm.scrollHeight;
   socket.emit('message', {name,body});
   document.querySelector('#usrmsg').value = "";
