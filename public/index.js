@@ -436,10 +436,15 @@ localStorage.setItem("name", "Smith");
 localStorage.getItem("name");
 */
 
+function nameSet(){
+  let name = document.getElementById('usrnme').value;
+  localStorage.setItem("name", name);
+}
+
 function chat(){
   let name;
   if(!localStorage.getItem("name")){
-    name =  prompt("Please enter your name", "")
+    name =  prompt("Please enter your name", "");
     if (name != null) {
       localStorage.setItem("name", name);
       name = localStorage.getItem("name");
