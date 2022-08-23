@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/index.css">
   <link rel="stylesheet" href="/static/bootstrap.min.css">
-  <title>Cric</title>
+  <title><%= Title %></title>
   <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
   <script>
 	  const socket = io('<%= URL %>');
@@ -22,12 +22,6 @@
   <script src="/static/index.js"></script>
 </head>
 <body onload="scroll()">
-<div class="container">
-	<div class="row"><div class="col-sm-12 col-md-6 col-lg-4">
-<img src="/static/logo.png" width="100%" >
-</div></div>
-</div>
-
 <div class="bg-primary">
 <div class="container text-white mb-2 py-2">
 <div class="row">
