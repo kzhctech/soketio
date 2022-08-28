@@ -837,7 +837,13 @@ io.on('connection', (socket) => {
   message1.save(function (err, masg) {
     if (err) return console.error(err);
     console.log(masg + " saved to link collection.");
-  });   
+  });
+  
+  Message.find({}, function(err, message) {
+    Message.remove({_id:message[0]._id}, function(err){
+      if(err) throw err;})  
+  });
+  
 });
 
 

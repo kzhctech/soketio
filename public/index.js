@@ -11,7 +11,7 @@ function scroll(){
   setTimeout(function() {
     elm.scrollTop = elm.scrollHeight;
   }, 300);
-  document.getElementById('usrnme').value = localStorage.getItem("name"); ;
+  document.getElementById('usrnme').value = localStorage.getItem("name");
 }
 
 /* Midwicket */
