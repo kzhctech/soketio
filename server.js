@@ -76,6 +76,16 @@ db.on('error', console.error.bind(console, 'connection error:'));
  
     // compile schema to model
     var News = mongoose.model('News', NewsSchema, 'Newstore');
+
+
+    // define Schema
+    var MessageSchema = mongoose.Schema({
+      name:String,
+      message:String
+    });
+ 
+    // compile schema to model
+    var Message = mongoose.model('Message', MessageSchema, 'Messagestore');
  
 
     // define Schema
@@ -208,6 +218,7 @@ app.get('/live', (req, res) => {
   }
 
 
+Message.find({}, function(err, message) {
 Link.find({}, function(err, link) {
 
 var cmnty = '';
@@ -262,6 +273,7 @@ axios.get(link[0].link).then((response) => {
 
 
   res.render('live', {
+    messagelist:message,
     URL:fullUrl,
       Title:title,
       Status:status,
@@ -301,6 +313,7 @@ axios.get(link[0].link).then((response) => {
       console.log(BatName2,':',BatRun2);
 
       res.render('live', {
+        messagelist:message,
         URL:fullUrl,
         Title:title,
         Status:status,
@@ -326,7 +339,9 @@ axios.get(link[0].link).then((response) => {
     console.log('404');
   });
 
-    })
+    });
+
+  });
 
 
 
@@ -814,7 +829,15 @@ io.on('connection', (socket) => {
 
  socket.on('message', (masg) =>     {
   console.log(masg);
-  io.emit('message',masg);   
+  io.emit('message',masg);
+  var message1 = new Message({ name:masg.name,message:masg.body });
+ 
+  // save model to database
+
+  message1.save(function (err, masg) {
+    if (err) return console.error(err);
+    console.log(masg + " saved to link collection.");
+  });   
 });
 
 
