@@ -146,7 +146,7 @@ app.post('/addnews', (req, res) => {
   news1.save(function (err, news) {
     if (err) return console.error(err);
     console.log('news' + " saved to link collection.");
-res.redirect('/news');
+res.redirect('/');
   });
 
 
