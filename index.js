@@ -1,3 +1,15 @@
+
+
+const express = require("express");
+
+app.get('/', (req, res) => {
+res.send("hi");});
+
+
+
+
+
+/*
 var mongodb = require('mongodb');
 const cheerio = require('cheerio');
 const axios = require('axios');
@@ -157,4 +169,4 @@ setInterval(function () {
 http.listen(process.env.PORT, () => console.error('listening on http://localhost:3002/'));
 console.error('socket.io example');
 
-
+*/
