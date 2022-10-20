@@ -849,7 +849,7 @@ io.on('connection', (socket) => {
 socket.on('update', (updt) =>     {
   console.log(updt);
   io.emit('update',updt);
-}
+});
 
 
 });
