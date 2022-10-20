@@ -762,7 +762,9 @@ io.on('connection', (socket) => {
     var batsman2img;
     var bowlerimg;
     
-  
+  if(title){
+	   io.emit('match', {title});
+  }
   
   
     
