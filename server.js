@@ -761,7 +761,10 @@ io.on('connection', (socket) => {
     var batsman1img;
     var batsman2img;
     var bowlerimg;
- 
+    
+  
+  
+  
     
    if(batTeam){
     
@@ -855,4 +858,3 @@ socket.on('update', (updt) =>     {
 server.listen(process.env.PORT || 4000, function() {
   console.log('server is running');
 });
-
