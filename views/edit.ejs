@@ -27,7 +27,7 @@ recognition.maxAlternatives = 1;
 var bg = document.querySelector('html');
 
 
-document.body.onclick = function() {
+function vinit() {
   recognition.start();
   console.log('Ready to receive a color command.');
 }
@@ -66,6 +66,7 @@ function update(){
   </script>
 </head>
 <body>
+<button onclick="vinit">Speak Now</button>
 <form class="" method="post" action="/edit">
 <input name="id" value="<%= match._id %>" type="hidden" class="form-control">
  <div class="form-row">
