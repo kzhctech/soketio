@@ -242,7 +242,7 @@ function deepExtracover(run){
 
   }
   function showAD(){
-    document.getElementById("adv").style.display = "block";
+    document.getElementById("adv").style.display = "none";
   }
 
   
@@ -336,6 +336,10 @@ socket.on('img',(st) =>{
   }
 })
 
+var ballPossition;
+var ballEvent;
+
+
 socket.on('match',(status)=> {
 
   //console.log(status.commentry);
@@ -364,50 +368,52 @@ socket.on('match',(status)=> {
    updateBat1(status.batsman1name,status.batsman1run);
    updateBat2(status.batsman2name,status.batsman2run);
    updateBowler(status.bowlername,status.bowlerover,status.bowlerwikwt );
-   
-
+  
+  ballPossition = status.commentry;
    let lb = parseInt(status.lb, 10);
-
-   if (status.commentry.includes("point")) {
-     point(lb);
-   }
-   
-   else if (status.commentry.includes("mid-on")) {
-     midOn(lb);
-   }
- 
-   else if (status.commentry.includes("mid-of")) {
-     midOff(lb);
-   }
- 
-   else if (status.commentry.includes("mid-wicket")) {
-     midwiket(lb);
-   }
-   
-   else if (status.commentry.includes("square")) {
-     squreLeg(lb);
-   }
-   
-   else if (status.commentry.includes("third")) {
-     thirdman(lb);
-   }
-   
-   else if (status.commentry.includes("cover")) {
-     deepExtracover(lb);
-   }
- 
-   else if (status.commentry.includes("long-on")) {
-     midwiket(lb);
-   }
-   else if (status.commentry.includes("long-of")) {
-     deepExtracover(lb);
-   }
-
+  ballEvent = lb;
  
   
 });
 
-
+setInterval(function() {
+  
+  //alert(ballPossition);
+  if (ballPossition.includes("point")) {
+     point(ballEvent);
+   }
+   
+   else if (ballPossition.includes("mid-on")) {
+     midOn(ballEvent);
+   }
+ 
+   else if (ballPossition.includes("mid-of")) {
+     midOff(ballEvent);
+   }
+ 
+   else if (ballPossition.includes("mid-wicket")) {
+     midwiket(ballEvent);
+   }
+   
+   else if (ballPossition.includes("square")) {
+     squreLeg(ballEvent);
+   }
+   
+   else if (ballPossition.includes("third")) {
+     thirdman(ballEvent);
+   }
+   
+   else if (ballPossition.includes("cover")) {
+     deepExtracover(ballEvent);
+   }
+ 
+   else if (ballPossition.includes("long-on")) {
+     midwiket(ballEvent);
+   }
+   else if (ballPossition.includes("long-of")) {
+     deepExtracover(ballEvent);
+   }
+},6000)
 
 
 socket.on('message', (msg) => {

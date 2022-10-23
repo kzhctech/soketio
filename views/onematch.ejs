@@ -10,8 +10,13 @@
   <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
   <script>
 	  const socket = io('<%= iourl %>');
+
+socket.on('update', (updt) => {
+  console.log(updt);
+});
+
+
   </script>
-  <script src=""></script>
 </head>
 <body>
 <div class="container">

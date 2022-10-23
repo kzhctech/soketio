@@ -497,11 +497,23 @@ Match.findByIdAndUpdate(req.body.id,{
 
 
 app.post('/editm', (req, res) => {
+ const protocol = req.protocol;
+  const host = req.hostname;
+  const port = process.env.PORT || 4000;
+
+  let fullUrl = `https://${host}`
+
+  if(!process.env.PORT){
+    fullUrl = `${protocol}://${host}:${port}`
+  }
+
+
 console.log(req.body.id)  
 Match.find({_id:req.body.id}, function(err, match) {
 	console.log(match[0].name)  
         res.render('edit', {
-           match: match[0]
+           match: match[0],
+           iourl:fullUrl
         })
     })
 });
@@ -845,6 +857,8 @@ io.on('connection', (socket) => {
   });
   
 });
+
+
 
 socket.on('update', (updt) =>     {
   console.log(updt);
