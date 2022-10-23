@@ -80,22 +80,18 @@
   height: 40px;
   width: 15px;
   background-color: yellow;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 }
 #ball{
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  position: absolute;
+  height: 12px;
+  width: 12px;
   background-color: red;
+  position: absolute;
 }
 .filder{
   background-color: white;
-  height: 8px;
-  width: 8px;
+  height: 10px;
+  width: 10px;
   position: absolute;
   border-radius: 50%;
 }
@@ -150,31 +146,25 @@
 
 @keyframes midwiket-ball{
   0%{
-    top: 0;
-    left: 0;
+    transform: rotate(-25deg);
   }
-  50%{
-    top: 100px;
-    left: 40px;
-  }
+  
   100%{
-    top: 0;
-    left: 0;
+    margin-left: 25px;
+    height: 120px;
+    transform: rotate(-25deg);
+    
   }
 }
 
 @keyframes midwiket-ball-boundary{
-  0%{
-    top: 0;
-    left: 0;
-  }
-  50%{
-    top: 140px;
-    left: 70px;
+    0%{
+    transform: rotate(-25deg);
   }
   100%{
-    top: 0;
-    left: 0;
+    margin-left: 30px;
+    height: 160px;
+    transform: rotate(-25deg);
   }
 }
 
@@ -198,16 +188,13 @@
 
 @keyframes deepExtracover-ball {
   0%{
-    top: 0;
-    left: 0;
-  }
-  50%{
-    top: 100px;
-    left: -40px;
+    transform: rotate(25deg);
+    right: 0;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: 30px;
+    height: 120px;
+    transform: rotate(25deg);
   }
 }
 
@@ -229,16 +216,13 @@
 
 @keyframes deepExtracover-ball-boundary{
   0%{
-    top: 0;
-    left: 0;
-  }
-  50%{
-    top: 140px;
-    left: -70px;
+    transform: rotate(25deg);
+    right: 0;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: 30px;
+    height: 160px;
+    transform: rotate(25deg);
   }
 }
 
@@ -246,16 +230,15 @@
 
 @keyframes thirdman-ball {
   0%{
+    transform: rotate(140deg);
     top: 0;
-    left: 0;
-  }
-  50%{
-    top: -60px;
-    left: -60px;
+    left:0;
   }
   100%{
-    top: 0;
-    left: 0;
+    top: -70px;
+    left: -30px;
+    height: 85px;
+    transform: rotate(140deg);
   }
 }
 
@@ -276,17 +259,16 @@
 
 
 @keyframes thirdman-ball-boundary{
-  0%{
+   0%{
+    transform: rotate(140deg);
     top: 0;
-    left: 0;
-  }
-  50%{
-    top: -160px;
-    left: -150px;
+    left:0;
   }
   100%{
-    top: 0;
-    left: 0;
+    top: -110px;
+    left: -40px;
+    height: 125px;
+    transform: rotate(140deg);
   }
 }
 
@@ -295,17 +277,16 @@
 
 
 @keyframes squreLeg-ball {
-  0%{
+ 0%{
+    transform: rotate(-70deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: 35px;
-  left: 90px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: -50px;
+    top: -30px;
+    height: 120px;
+    transform: rotate(-70deg);
   }
 }
 
@@ -326,17 +307,16 @@
 
 
 @keyframes squreLeg-ball-boundary{
-  0%{
+ 0%{
+    transform: rotate(-70deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: 35px;
-  left: 150px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: -70px;
+    top: -50px;
+    height: 160px;
+    transform: rotate(-70deg);
   }
 }
 
@@ -346,17 +326,16 @@
 
 
 @keyframes  point-ball {
-  0%{
+0%{
+    transform: rotate(70deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: 40px;
-  left: -80px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: 50px;
+    top: -30px;
+    height: 120px;
+    transform: rotate(70deg);
   }
 }
 
@@ -377,17 +356,16 @@
 
 
 @keyframes  point-ball-boundary{
-  0%{
+0%{
+    transform: rotate(70deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: 40px;
-  left: -130px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: 70px;
+    top: -50px;
+    height: 160px;
+    transform: rotate(70deg);
   }
 }
 
@@ -395,17 +373,16 @@
 /* midOff */
 
 @keyframes  midOff-ball {
-  0%{
+ 0%{
+    transform: rotate(40deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: 50px;
-  left :-40px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: 20px;
+    top: 0px;
+    height: 70px;
+    transform: rotate(40deg);
   }
 }
 
@@ -445,17 +422,16 @@
 /* midOn */
 
 @keyframes  midOn-ball {
-  0%{
+0%{
+    transform: rotate(-40deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: 50px;
-  left :40px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: -20px;
+    top: 0px;
+    height: 70px;
+    transform: rotate(-40deg);
   }
 }
 
@@ -494,17 +470,16 @@
 /* fineLeg */
 
 @keyframes  fineLeg-ball {
-  0%{
+0%{
+    transform: rotate(-130deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: -25px;
-  left: 40px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: -20px;
+    top: -40px;
+    height: 70px;
+    transform: rotate(-130deg);
   }
 }
 
@@ -525,17 +500,16 @@
 
 
 @keyframes  fineLeg-ball-boundary{
-  0%{
+0%{
+    transform: rotate(-130deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: -55px;
-  left: 120px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: -50px;
+    top: -100px;
+    height: 150px;
+    transform: rotate(-130deg);
   }
 }
 
@@ -545,17 +519,16 @@
 
 
 @keyframes  gully-ball {
-  0%{
+ 0%{
+    transform: rotate(130deg);
+    right: 0;
     top: 0;
-    left: 0;
-  }
-  50%{
-  top: -25px;
-  left: -10px;
   }
   100%{
-    top: 0;
-    left: 0;
+    right: 20px;
+    top: -40px;
+    height: 70px;
+    transform: rotate(130deg);
   }
 }
 
@@ -563,10 +536,6 @@
   0%{
   top: -25px;
   right: 40px;
-  }
-  50%{
-  top: -25px;
-  left: -10px;
   }
   100%{
   top: -25px;
