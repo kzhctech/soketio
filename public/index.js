@@ -5,6 +5,9 @@ var cmnty;
 var cmnt;
 var dtail;
 var bat1img,bat2img,bowlerimg;
+var over;
+var state;
+var update;
 
 function scroll(){
   let elm = document.getElementById("myDIV");
@@ -258,7 +261,7 @@ function deepExtracover(run){
     document.getElementById("bat1Score").innerHTML = sco.BatRun1;
      let ovr = sco.BatRun1.split(' ');
     ovr = ovr[ovr.length - 1];
-    console.log(ovr);
+    over = ovr;
     if (ovr.includes(".")) {
       hideAD();
     }
@@ -338,7 +341,8 @@ socket.on('img',(st) =>{
 
 var ballPossition;
 var ballEvent;
-
+var stat;
+var ustat = true;
 
 socket.on('match',(status)=> {
 
@@ -372,47 +376,69 @@ socket.on('match',(status)=> {
   ballPossition = status.commentry;
    let lb = parseInt(status.lb, 10);
   ballEvent = lb;
- 
   
-});
-
-setInterval(function() {
+  if (stat != status.lb + over){
+   stat = status.lb + over;
+   ustat = true;
+  }
   
-  //alert(ballPossition);
-  if (ballPossition.includes("point")) {
+  if (ustat){
+if (ballPossition.includes("point") ) {
      point(ballEvent);
+     ustat = false;
    }
    
    else if (ballPossition.includes("mid-on")) {
      midOn(ballEvent);
+ustat = false;
    }
  
    else if (ballPossition.includes("mid-of")) {
      midOff(ballEvent);
+ustat = false;
    }
  
    else if (ballPossition.includes("mid-wicket")) {
      midwiket(ballEvent);
+ustat = false;
    }
    
    else if (ballPossition.includes("square")) {
      squreLeg(ballEvent);
+ustat = false;
    }
    
    else if (ballPossition.includes("third")) {
      thirdman(ballEvent);
+ustat = false;
    }
    
    else if (ballPossition.includes("cover")) {
      deepExtracover(ballEvent);
+ustat = false;
    }
  
    else if (ballPossition.includes("long-on")) {
      midwiket(ballEvent);
+ustat = false;
    }
    else if (ballPossition.includes("long-of")) {
      deepExtracover(ballEvent);
-   }
+ustat = false;
+ }
+  }
+ 
+  
+});
+
+
+
+
+setInterval(function() {
+  
+
+
+   
 },6000)
 
 
