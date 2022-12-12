@@ -790,8 +790,10 @@ io.on('connection', (socket) => {
       bowlerimg = 'https:'+imgURL;
   
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
-    });
-  
+    }).catch(function (error) {
+    // handle error
+    console.log('404');
+  });
   
     axios.get('https://m.cricbuzz.com'+batsman1URL).then((response) => {
       // Load the web page source code into a cheerio instance
@@ -803,7 +805,10 @@ io.on('connection', (socket) => {
       batsman1img = 'https:'+imgURL;
   
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
-    });
+    }).catch(function (error) {
+    // handle error
+    console.log('404');
+  });
   
   
     axios.get('https://m.cricbuzz.com'+batsman2URL).then((response) => {
@@ -820,7 +825,10 @@ io.on('connection', (socket) => {
       // console.log(batsman2img);
       // console.log(bowlerimg);
       //#playerProfile > div.list-group > div:nth-child(2) > div > div > div > div > img
-    });
+    }).catch(function (error) {
+    // handle error
+    console.log('404');
+  });
     
     io.emit('match', {commentry,batTeam:{BatName1,BatRun1},bowlTeam:{BatName2,BatRun2},status,batsman1name,batsman1run,batsman2name,batsman2run,bowlername,bowlerover,bowlerwikwt,lbb,lb,pship,lw} );
    }
@@ -830,7 +838,6 @@ io.on('connection', (socket) => {
     // handle error
     console.log('404');
   });
-;
     
         })
 
