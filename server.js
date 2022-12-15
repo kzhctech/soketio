@@ -447,6 +447,16 @@ axios.get(link[0].link).then((response) => {
 
 }).catch(function (error) {
     console.log('404');
+res.render('newindex', {
+      matchList: match,
+      newslist: news,
+      Title:title,
+      Status:status,
+      BatName: BatName1,
+      BatRun: BatRun1,
+      BowlName: BatName2,
+      BowlRun:BatRun2
+          });
   });
 
 
