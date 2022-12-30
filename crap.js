@@ -2,15 +2,28 @@ const axios = require('axios')
 const cheerio = require('cheerio');
 
 
-setInterval(function(){
- axios.get('https://cricket.one/scoreboard/EVL/139/2nd-TEST/T/U/sl-vs-pak-2nd-test-pakistan-tour-of-sri-lanka-2022/live').then((response) => {
+function match(){
+  
+  let link = 'https://crex.live/scoreboard/H1W/18X/1st-TEST/U/R/pak-vs-nz-1st-test-new-zealand-tour-of-pakistan-2022-23/commentary';
+  
+ axios.get(link).then((response) => {
     const $ = cheerio.load(response.data);
-    var str = $('#topDiv').find('div:nth-child(1)').children().find('.cm-b-comment-c2').text();
-    var cmnty = str.split("\n");
+    var str = $('#topDiv').children().find('.align-items-baseline').first().children().text();
+    
+    var cmnty =  $('#topDiv').children().find('.cm-b-comment-c2').first().text();
+    
+    if(cmnty =' '){
+      cmnty = $('#topDiv').find('div:nth-child(2)').children().find('.cm-b-comment-c2').text();
+      console.log('Old')
+    }
+    else{
+      cmnty = $('#topDiv').find('div:nth-child(3)').children().find('.cm-b-comment-c2').text();
+      console.log('Old 2')
+    }
+    
+    var bs =  $('#topDiv').children().find('.cm-b-ballupdate').first().text();
 
-if(cmnty[0]){console.log(cmnty[0]);}
-else{console.log(cmnty[1]);}
-console.log('');
+console.log(str,cmnty,bs);
 
     }).catch(function (error) {
     // handle error
@@ -18,10 +31,38 @@ console.log('');
   });
 
 }
-, 10000);
+
+match();
+
+
+setInterval(function(){
+  match()
+}, 20000);
 
 //#topDiv > div:nth-child(1) > div
 /*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div _ngcontent-app-root-c51="" class="d-flex align-items-baseline"><span _ngcontent-app-root-c51="" class="cm-b-over"> 15.3 </span><!----><!----><div _ngcontent-app-root-c51="" class="d-flex text-align-start comm-update-space"><span _ngcontent-app-root-c51="" class="cm-b-ballupdate cm-o-b-4 cm-o-b-all"> 4 </span><span _ngcontent-app-root-c51="" class="cm-b-comment-c2"></span></div><!----><span _ngcontent-app-root-c51="" class="cm-b-comment-c1">H Thornton to A Turner</span></div>
+
+
+<span _ngcontent-app-root-c51="" class="cm-b-comment-c2">The last ball of the day. Fuller on the stumps, Warner defends it to the off-side to end the over. That will be Stumps on Day 1 of the Boxing Day Test.&nbsp;</span>
+
+
 
 <div _ngcontent-sc64="" class="col-12"><div _ngcontent-sc64="" class="d-flex ali
 gn-items-baseline"><span _ngcontent-sc64="" class="cm-b-over"> 32.2 </span><!---
