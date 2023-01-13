@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 
 function match(){
   
-  let link = 'https://crex.live/scoreboard/H1W/18X/1st-TEST/U/R/pak-vs-nz-1st-test-new-zealand-tour-of-pakistan-2022-23/commentary';
+  let link = 'https://crex.live/scoreboard/I0H/1AT/2nd-ODI/T/O/sl-vs-ind-2nd-odi-sri-lanka-tour-of-india-2023/commentary';
   
  axios.get(link).then((response) => {
     const $ = cheerio.load(response.data);
