@@ -344,13 +344,63 @@ var ballEvent;
 var stat;
 var ustat = true;
 
+var stcmnt;
+
+function brun(){
+ if (stcmnt.includes("point") ) {
+     point(ballEvent);
+     ustat = false;
+   }
+   
+   else if (stcmnt.includes("mid-on")) {
+     midOn(ballEvent);
+ustat = false;
+   }
+ 
+   else if (stcmnt.includes("mid-of")) {
+     midOff(ballEvent);
+ustat = false;
+   }
+ 
+   else if (stcmnt.includes("mid-wicket")) {
+     midwiket(ballEvent);
+ustat = false;
+   }
+   
+   else if (stcmnt.includes("square")) {
+     squreLeg(ballEvent);
+ustat = false;
+   }
+   
+   else if (stcmnt.includes("third")) {
+     thirdman(ballEvent);
+ustat = false;
+   }
+   
+   else if (stcmnt.includes("cover")) {
+     deepExtracover(ballEvent);
+ustat = false;
+   }
+ 
+   else if (stcmnt.includes("long-on")) {
+     midwiket(ballEvent);
+ustat = false;
+   }
+   else if (stcmnt.includes("long-of")) {
+     deepExtracover(ballEvent);
+ustat = false;
+ }
+}
+
+
+
 socket.on('match',(status)=> {
 
   //console.log(status.commentry);
   //console.log(status.pship);
   //console.log(status.lw);
   
-  
+  stcmnt = status.commentry;
   
   if (status.commentry != dtail){
       dtail = status.commentry;
@@ -441,6 +491,7 @@ setInterval(function() {
    
 },6000)
 
+brun();
 
 socket.on('message', (msg) => {
 

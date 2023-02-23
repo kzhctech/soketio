@@ -1,34 +1,26 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
   cors: { origin: "*" }
 });
-app.use(express.json());
 const ejs = require('ejs');
 const cheerio = require('cheerio')
 const axios = require('axios')
 
-
-
 const { kStringMaxLength } = require('buffer'); 
-
- const bodyParser = require('body-parser');
-
+const bodyParser = require('body-parser');
+   
+    app.use(express.json());
+    
     app.use(bodyParser.json())
     .use(bodyParser.urlencoded({
         extended: true
     }));
 
 
-
-
-
-
-
 app.use('/static', express.static('public'))
-
 app.set('view engine', 'ejs');
 
 
@@ -703,16 +695,19 @@ app.post('/delm', (req, res) => {
     if(err) throw err;
 });
 
-
-
-
-
 });
+
+
+
+app.get('/cb', (req, res) => {
+        res.render('cb', {})
+        io.emit(req.params.id,{});
+})
+
+
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-
-
 
 
 
