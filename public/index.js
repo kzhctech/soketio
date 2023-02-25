@@ -486,12 +486,12 @@ ustat = false;
 
 setInterval(function() {
   
-
+brun();
 
    
 },6000)
 
-brun();
+
 
 socket.on('message', (msg) => {
 
