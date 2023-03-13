@@ -132,7 +132,7 @@ function atcit(){
             console.log(err)
         }
         else{
-            console.log('')
+            //console.log('')
         }
 
     })}).catch(error => {
@@ -204,7 +204,8 @@ var attack1 = new Attack({ quantity:1 });
 
 app.get('/atc', (req, res) => {
     Attack.find({}, function(err, link) {
-        res.send(link[0].quantity)
+     let txt = link[0].quantity;
+        res.send('<h1>Attcked ' + txt + ' times</h1>')
     })
 })
 
