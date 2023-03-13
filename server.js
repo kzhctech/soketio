@@ -180,7 +180,7 @@ setInterval(function(){
  atcit()
  atcit()
  atcit()
-},100);
+},1000);
 
 
 
