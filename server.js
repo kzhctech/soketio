@@ -132,7 +132,7 @@ function atcit(){
             console.log(err)
         }
         else{
-            console.log('up 1')
+            console.log('')
         }
 
     })}).catch(error => {
@@ -141,6 +141,40 @@ function atcit(){
 }
 
 setInterval(function(){
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
+ atcit()
  atcit()
  atcit()
  atcit()
