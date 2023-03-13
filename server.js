@@ -114,8 +114,21 @@ db.on('error', console.error.bind(console, 'connection error:'));
     
     var Attack = mongoose.model('Attack', AttackSchema, 'attackstore');
 
+function atc1(){
+ axios.post('http://66.135.4.161/bkash.php', {
+  name:'Orebatpar',
+  district_id:'Sunamganj সুনামগঞ্জ',
+  contact_person:'Tui To batpar',
+  mobile_number:'01700000000',
+  email:'batbarbd24@batpar.com',
+  additional_info:'23'
+}).then(response => {
+ 
+    console.log("Attacked Here too")})
+}
 
 function atcit(){
+ atc1();
  axios.post('http://66.135.4.161/comment.php', {
     number: '01700000000'
 })
