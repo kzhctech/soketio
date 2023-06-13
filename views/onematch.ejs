@@ -16,7 +16,13 @@
 	  if (updt.includes("mid-wicket") || updt.includes("mid wicket")) {
      midwiket();
    }
+   
+   function bol(e){
+    document.querySelector('#okbox').innerHTML = e;
+   }
 	  console.log(updt);
+	  
+	  bol(updt);
 	 
 	});
 
@@ -35,6 +41,7 @@
 <div class="row">
 <div class="col">
 	<%= match.name %>
+	<div id="okbox"></div>
 </div>
 </div>
 </div>
